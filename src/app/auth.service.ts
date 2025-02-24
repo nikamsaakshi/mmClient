@@ -15,10 +15,31 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     try {
-      alert('login api')
       const body = { email, password };
       return this.http.post(`${this.baseUrl}/login`, body);
     } catch (error) {
+      console.log('error');
+      console.log(error);
+      return of(error);
+    }
+  }
+
+  saveCandidateProfile(
+    emailId: string,
+    password: string,
+    aadhaarNumber: string,
+    mobileNumber: string
+  ): Observable<any> {
+    try {
+      const body = {
+        emailId,
+        password,
+        aadhaarNumber,
+        mobileNumber
+      };
+      return this.http.post(`${this.baseUrl}/saveCandidate`, body);
+    } catch (error) {
+      alert(error);
       console.log('error');
       console.log(error);
       return of(error);

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,12 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 <body>
- 
+
     <nav class="navbar navbar-expand-lg fixed-top bg-white">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?w=40&h=40&fit=crop" alt="Logo" class="rounded-circle me-2">Forever Together
+                <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?w=40&h=40&fit=crop" alt="Logo"
+                    class="rounded-circle me-2">Forever Together
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -23,9 +24,9 @@
                     <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="success-stories.html">Success Stories</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item">                        
-                    <button class="btn btn-primary ms-3" 
-                    data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <li class="nav-item">
+                        <button class="btn btn-primary ms-3" data-bs-toggle="modal"
+                            data-bs-target="#loginModal">Login</button>
                     </li>
                     <!-- <li>
                         <button class="btn btn-primary ms-3" (click)="openLoginModal()">Login New</button>
@@ -60,34 +61,34 @@
             </div>
         </div>
     </div> -->
-	
-	
-	
-	<div class="modal fade" id="loginModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Login</h5>
-          <button type="button" class="btn-close" (click)="closeLoginModal()"></button>
-        </div>
-        <div class="modal-body">
-          <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-            <div class="mb-3">
-              <label class="form-label">Email ID</label>
-              <input type="email" class="form-control" name="emailId" [(ngModel)]="email" required maxlength="100">
+
+    <div class="modal fade" id="loginModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="btn-close" (click)="closeLoginModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+                        <div class="mb-3">
+                            <label class="form-label">Email ID</label>
+                            <input type="email" class="form-control" name="emailId" [(ngModel)]="email" required
+                                maxlength="100">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="password" required
+                                maxlength="20">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="password" required maxlength="20">
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-          </form>
         </div>
-      </div>
     </div>
-  </div>
-	
-	
+
+
 
     <div class="modal fade" id="registerModal">
         <div class="modal-dialog">
@@ -97,32 +98,35 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="registrationForm" class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="firstName" required maxlength="100">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="lastName" required maxlength="100">
-                        </div>
+                    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)" class="row g-3">
                         <div class="col-12">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" required maxlength="100">
+                            <input type="email" class="form-control" name="email" [(ngModel)]="emailId" required
+                                maxlength="100">
                         </div>
-                        <div class="col-12">
-                            <label class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" name="contactNo" required maxlength="10" pattern="[0-9]{10}">
-                        </div>
+
                         <div class="col-12">
                             <label class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" required maxlength="20">
+                            <input type="password" class="form-control" name="password" [(ngModel)]="password" required
+                                maxlength="20">
                         </div>
+                        <div class="col-12">
+                            <label class="form-label">Aadhaar Number</label>
+                            <input type="aadhaarNo" class="form-control" name="aadhaarNumber" [(ngModel)]="aadhaarNumber"
+                                required maxlength="20">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Mobile Number</label>
+                            <input type="tel" class="form-control" name="mobileNumber" [(ngModel)]="mobileNumber" required
+                                maxlength="10" pattern="[0-9]{10}">
+                        </div>
+
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary w-100">Register</button>
                         </div>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>
@@ -162,7 +166,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" name="contactNo" required maxlength="10" pattern="[0-9]{10}">
+                            <input type="tel" class="form-control" name="contactNo" required maxlength="10"
+                                pattern="[0-9]{10}">
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email ID</label>
@@ -190,7 +195,8 @@
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Pincode</label>
-                            <input type="text" class="form-control" name="pincode" required maxlength="6" pattern="[0-9]{6}">
+                            <input type="text" class="form-control" name="pincode" required maxlength="6"
+                                pattern="[0-9]{6}">
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Religion</label>
@@ -219,12 +225,15 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <h1 class="display-4 fw-bold mb-4">Find Your Perfect Match</h1>
-                        <p class="lead mb-4">Join thousands of happy couples who found their soulmate through Forever Together. Your perfect match is just a click away.</p>
-                        <button class="btn btn-primary btn-lg me-3" data-bs-toggle="modal" data-bs-target="#registerModal">Register Free</button>
+                        <p class="lead mb-4">Join thousands of happy couples who found their soulmate through Forever
+                            Together. Your perfect match is just a click away.</p>
+                        <button class="btn btn-primary btn-lg me-3" data-bs-toggle="modal"
+                            data-bs-target="#registerModal">Register Free</button>
                         <button class="btn btn-outline-primary btn-lg">Learn More</button>
-                    </div> 
+                    </div>
                     <div class="col-lg-3">
-                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2" alt="Happy Couple" class="img-fluid rounded-4">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2" alt="Happy Couple"
+                            class="img-fluid rounded-4">
                     </div>
                 </div>
             </div>
@@ -270,7 +279,8 @@
                 <div class="row g-4">
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a" class="card-img-top" alt="Couple">
+                            <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a" class="card-img-top"
+                                alt="Couple">
                             <div class="card-body text-center">
                                 <h5>Raj & Priya</h5>
                                 <p>"Found our perfect match within months! Forever grateful."</p>
@@ -279,7 +289,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" class="card-img-top" alt="Couple">
+                            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" class="card-img-top"
+                                alt="Couple">
                             <div class="card-body text-center">
                                 <h5>John & Sarah</h5>
                                 <p>"The perfect platform for finding true love."</p>
@@ -288,7 +299,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1522862477474-d63fb2c8c8f4" class="card-img-top" alt="Couple">
+                            <img src="https://images.unsplash.com/photo-1522862477474-d63fb2c8c8f4" class="card-img-top"
+                                alt="Couple">
                             <div class="card-body text-center">
                                 <h5>Amit & Neha</h5>
                                 <p>"Best decision we ever made! Happily married now."</p>
@@ -373,5 +385,7 @@
             // Handle profile submission
         });
     </script>
+    <router-outlet></router-outlet>
 </body>
+
 </html>
