@@ -1,1 +1,20 @@
-<p>matching-profiles works!</p>
+<section id="testimonials" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Matching profiles</h2>
+    <div class="row g-4" *ngIf="candidates">
+      <div *ngFor="let item of candidates" class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-0">
+            <!-- <img src={{item.photoPath}} class="img-fluid rounded-circle"> -->
+            <img src="https://images.pexels.com/photos/157757/wedding-dresses-fashion-character-bride-157757.jpeg" class="img-fluid rounded-circle">
+          </div>
+          <div class="card-body text-center">
+            <!-- <h4>{{item.photoPath}}</h4> -->
+            <h5>{{ item.firstName }}</h5>
+            <p>{{ item.lastName }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,62 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forever Together - Find Your Soulmate</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
+
 <body>
+    <app-nav></app-nav>
+    <main class="content" style="background-color: #f8f9fa;">
+        <router-outlet></router-outlet>
+    </main>
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-white">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="https://images.unsplash.com/photo-1496200186974-4293800e2c20?w=40&h=40&fit=crop" alt="Logo"
-                    class="rounded-circle me-2">Forever Together
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="success-stories.html">Success Stories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item">
-                        <button class="btn btn-primary ms-3" data-bs-toggle="modal"
-                            data-bs-target="#loginModal">Login</button>
-                    </li>
-                    <!-- <li>
-                        <button class="btn btn-primary ms-3" (click)="openLoginModal()">Login New</button>
-                    </li> -->
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- <div class="modal fade" id="loginModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label class="form-label">Email ID</label>
-                            <input type="email" class="form-control" name="emailId"
-                             required maxlength="100">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password"
-                            required maxlength="20">
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
+    <!--
     <div class="modal fade" id="loginModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -88,9 +41,7 @@
         </div>
     </div>
 
-
-
-    <div class="modal fade" id="registerModal">
+    <div class="modal fade" id="registerModal" style="background-color: blue;">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,13 +63,13 @@
                         </div>
                         <div class="col-12">
                             <label class="form-label">Aadhaar Number</label>
-                            <input type="aadhaarNo" class="form-control" name="aadhaarNumber" [(ngModel)]="aadhaarNumber"
-                                required maxlength="20">
+                            <input type="aadhaarNo" class="form-control" name="aadhaarNumber"
+                                [(ngModel)]="aadhaarNumber" required maxlength="20">
                         </div>
                         <div class="col-12">
                             <label class="form-label">Mobile Number</label>
-                            <input type="tel" class="form-control" name="mobileNumber" [(ngModel)]="mobileNumber" required
-                                maxlength="10" pattern="[0-9]{10}">
+                            <input type="tel" class="form-control" name="mobileNumber" [(ngModel)]="mobileNumber"
+                                required maxlength="10" pattern="[0-9]{10}">
                         </div>
 
                         <div class="col-12">
@@ -127,94 +78,6 @@
                     </form>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="profileModal" data-bs-backdrop="static">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Complete Your Profile</h5>
-                </div>
-                <div class="modal-body">
-                    <form id="profileForm" class="row g-3">
-                        <div class="col-md-4">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="firstName" required maxlength="100">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Middle Name</label>
-                            <input type="text" class="form-control" name="middleName" required maxlength="100">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="lastName" required maxlength="100">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Date of Birth</label>
-                            <input type="date" class="form-control" name="DOB" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Gender</label>
-                            <select class="form-select" name="gender" required>
-                                <option value="">Choose...</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" name="contactNo" required maxlength="10"
-                                pattern="[0-9]{10}">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Email ID</label>
-                            <input type="email" class="form-control" name="emailId" required maxlength="100">
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label">Address Line 1</label>
-                            <input type="text" class="form-control" name="addressLine1" maxlength="100">
-                        </div>
-                        <div class="col-12">
-                            <label class="form-label">Address Line 2</label>
-                            <input type="text" class="form-control" name="addressLine2" maxlength="100">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Village/City</label>
-                            <input type="text" class="form-control" name="villageOrCity" required maxlength="100">
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Taluka</label>
-                            <input type="text" class="form-control" name="taluka" required maxlength="100">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">District</label>
-                            <input type="text" class="form-control" name="district" required maxlength="100">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Pincode</label>
-                            <input type="text" class="form-control" name="pincode" required maxlength="6"
-                                pattern="[0-9]{6}">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Religion</label>
-                            <input type="text" class="form-control" name="religion" required maxlength="50">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Cast</label>
-                            <input type="text" class="form-control" name="cast" required maxlength="50">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Sub Cast</label>
-                            <input type="text" class="form-control" name="subCast" maxlength="50">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary w-100">Save Profile</button>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -273,44 +136,6 @@
             </div>
         </section>
 
-        <section id="testimonials" class="py-5 bg-light">
-            <div class="container">
-                <h2 class="text-center mb-5">Success Stories</h2>
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a" class="card-img-top"
-                                alt="Couple">
-                            <div class="card-body text-center">
-                                <h5>Raj & Priya</h5>
-                                <p>"Found our perfect match within months! Forever grateful."</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf" class="card-img-top"
-                                alt="Couple">
-                            <div class="card-body text-center">
-                                <h5>John & Sarah</h5>
-                                <p>"The perfect platform for finding true love."</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1522862477474-d63fb2c8c8f4" class="card-img-top"
-                                alt="Couple">
-                            <div class="card-body text-center">
-                                <h5>Amit & Neha</h5>
-                                <p>"Best decision we ever made! Happily married now."</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="contact" class="py-5">
             <div class="container">
                 <div class="row">
@@ -339,13 +164,14 @@
             </div>
         </section>
     </div>
+    -->
 
     <footer class="bg-dark text-light py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <h5>Forever Together</h5>
-                    <p>Making meaningful connections since 2023.</p>
+                    <p>Making meaningful connections since 202.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5>Quick Links</h5>
@@ -365,27 +191,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-        });
-        
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
-            registerModal.hide();
-            const profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
-            profileModal.show();
-        });
-
-        document.getElementById('profileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Handle profile submission
-        });
-    </script>
-    <router-outlet></router-outlet>
 </body>
 
 </html>
