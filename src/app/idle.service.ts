@@ -8,7 +8,7 @@ import { fromEvent, merge, Observable, Subscription, timer } from 'rxjs';
 export class IdleService {
   private userActivitySubscription!: Subscription;
   private timeoutSubscription!: Subscription;
-  private readonly inactivityTime = 60000;
+  private readonly inactivityTime = 6000000;
 
   constructor(private ngZone: NgZone, private router: Router) { }
 

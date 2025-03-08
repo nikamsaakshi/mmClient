@@ -7,17 +7,14 @@ import { Candidate } from './candidate.model';
   providedIn: 'root',
 })
 export class AuthService {
-  private mockUser = { email: 'test@example.com', password: 'pass' };
-  private baseUrl = 'http://localhost:5098/api/Candidate'; //REST API URL
+  private baseUrl = 'http://localhost:5098/api/Candidate';
   private http: any;
   uploadResponse: any;
   constructor(httpClient: HttpClient) {
     this.http = httpClient;
   }
 
-  login(email: string,
-    password: string
-  ): Observable<any> {
+  login(email: string, password: string): Observable<any> {
     try {
       const body = { email, password };
       return this.http.post(`${this.baseUrl}/login`, body);
@@ -29,9 +26,7 @@ export class AuthService {
   }
 
   getMatchingProfilesByGender(gender: string): Observable<any> {
-
     try {
-      // const body = { gender };
       return this.http.get(`${this.baseUrl}/getMatchingProfilesByGender/` + gender);
     } catch (error) {
       return of(error);
@@ -61,76 +56,22 @@ export class AuthService {
       };
       return this.http.post(`${this.baseUrl}/saveCandidate`, body);
     } catch (error) {
-      alert(error);
-      console.log('error');
-      console.log(error);
       return of(error);
     }
   }
 
-
   saveProfile(
-
     imagemDocData: FormData
-    // candidateId: number,
-    // firstName: string,
-    // middleName: string,
-    // lastName: string,
-    // DOB: Date,
-    // gender: string,
-    // addressLine1: string,
-    // addressLine2: string,
-    // taluka: string,
-    // district: string,
-    // pincode: string,
-    // villageOrcity: string,
-    // religion: string,
-    // cast: string,
-    // subCast: string,
-    // height: number,
-    // weight: number,
-    // complexion: string,
-    // imagemDocData: FormData
-    // // photo: File,
-    // // bioData: File
   ): Observable<any> {
     try {
       const body = {
         imagemDocData
-
-        // candidateId: 4,
-        // firstName,
-        // middleName,
-        // lastName,
-        // DOB,
-        // gender,
-        // addressLine1,
-        // addressLine2,
-        // taluka,
-        // district,
-        // pincode,
-        // villageOrcity,
-        // religion,
-        // cast,
-        // subCast,
-        // height,
-        // weight,
-        // complexion,
-        // imagemDocData
-        // // photo,
-        // // bioData
       };
-
-
       return this.http.post(`${this.baseUrl}/saveCandidateProfile   `, imagemDocData);
     } catch (error) {
-      alert(error);
-      console.log('error');
-      console.log(error);
       return of(error);
     }
   }
-
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
@@ -140,12 +81,11 @@ export class AuthService {
     const body = {
       imageToBeuploaded: imageToBeuploade
     };
-    alert('kkkk ')
     return this.http.post('http://localhost:5098/api/Candidate/uploadImage/' + 'Sample', body);
-    //  .subscribe({  next: (response: any) => {
-    //     this.uploadResponse = response;
-    //     console.log('Upload successful', response);
-    //  }});
+  }
+
+  getImages(): Observable<any> {
+    return this.http.get(`http://localhost:5098/api/Candidate/getImages`);
   }
 }
 

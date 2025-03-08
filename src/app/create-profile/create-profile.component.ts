@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './create-profile.component.html',
   styleUrl: './create-profile.component.css'
 })
+
 export class CreateProfileComponent implements AfterViewInit {
   onFileSelected($event: Event) {
     throw new Error('Method not implemented.');
@@ -19,35 +20,6 @@ export class CreateProfileComponent implements AfterViewInit {
   isAddedIn: boolean | undefined;
   selectedPhotoFile: File | null = null;
   selectedBiodataFile: File | null = null;
-  constructor(private authService: AuthService, private router: Router) { }
-
-  ngAfterViewInit(): void {
-    let candidateId = '';
-    if (localStorage?.getItem('candidateId')) {
-      candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
-    }
-    if (this.authService.isLoggedIn()) {
-      this.authService.getCandidateProfileByCandidateId(Number(candidateId)).subscribe((response) => {
-        this.firstName = response.firstName;
-        this.lastName = response.lastName;
-        this.pincode = response.pincode;
-        this.DOB = response.DOB;
-        this.middleName = response.middleName;
-        this.addressLine1 = response.addressLine1;
-        this.addressLine2 = response.addressLine2;
-        this.cast = response.cast;
-        this.subCast = response.subCast;
-        this.complexion = response.complexion;
-        this.gender = response.gender;
-        this.height = response.height;
-        this.weight = response.weight;
-        this.district = response.district;
-        this.taluka = response.taluka;
-      });
-    } else {
-      alert("Please login!");
-    }
-  }
 
   firstName: string = '';
   middleName: string = '';
@@ -70,6 +42,39 @@ export class CreateProfileComponent implements AfterViewInit {
   photo: string = '';
   bioData: string = '';
   imagetobruploaded: FormData = new FormData();
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngAfterViewInit(): void {
+    let candidateId = '';
+    if (localStorage?.getItem('candidateId')) {
+      candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
+    }
+    if (this.authService.isLoggedIn()) {
+      this.authService.getCandidateProfileByCandidateId(Number(candidateId)).subscribe((response) => {
+        this.candidateId = Number(candidateId);
+        this.firstName = response.firstName;
+        this.lastName = response.lastName;
+        this.pincode = response.pincode;
+        this.DOB = response.dob;
+        this.middleName = response.middleName;
+        this.addressLine1 = response.addressLine1;
+        this.addressLine2 = response.addressLine2;
+        this.cast = response.cast;
+        this.subCast = response.subCast;
+        this.complexion = response.complexion;
+        this.gender = response.gender;
+        this.height = response.height;
+        this.weight = response.weight;
+        this.district = response.district;
+        this.taluka = response.taluka;
+        this.villageOrcity = response.villageOrcity;
+        this.religion = response.religion;
+      });
+    } else {
+      alert("Please login!");
+    }
+  }
 
   onSaveProfile(form: NgForm) {
     let imagemDocData = new FormData();
@@ -130,24 +135,5 @@ export class CreateProfileComponent implements AfterViewInit {
     if (event.target.files && event.target.files.length > 0) {
       this.selectedBiodataFile = event.target.files[0];
     }
-  }
-
-  onSaveProfile1(form: NgForm) {
-    let imagemDocData = new FormData();
-    if (this.selectedPhotoFile != null)
-      imagemDocData.append('image', this.selectedPhotoFile);
-    if (this.selectedBiodataFile != null)
-      imagemDocData.append('doc', this.selectedBiodataFile);
-
-    this.authService.saveProfile(
-      imagemDocData
-    ).subscribe(
-      (response) => {
-        alert(response);
-        alert('Added successful!!');
-      },
-      (error) => {
-        alert('onSaveProfile1 failed ' + error);
-      });
   }
 }
