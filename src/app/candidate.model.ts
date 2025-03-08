@@ -33,4 +33,9 @@ export class CandidateProfileWithPhotos {
   firstName!: string;
   lastName!: string;
   photoPath!: string;
+  dob!: string;
+  villageOrCity!: string;
+  district!: string;
+  maskedContactNumber!: string;
+  age!: string;
 }

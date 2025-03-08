@@ -7,6 +7,7 @@ import { FeaturesComponent } from './features/features.component';
 import { SuccessstoriesComponent } from './successstories/successstories.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { authGuard } from './auth.guard';
+import { CandidateDetailsDialogComponent } from './candidate-details-dialog/candidate-details-dialog.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'contact-us', component: ContactusComponent},
   { path: 'features', component: FeaturesComponent},
   { path: 'success-stories', component: SuccessstoriesComponent, canActivate:[authGuard]},
-  { path: 'create-profile', component: CreateProfileComponent, canActivate:[authGuard]}
+  { path: 'create-profile', component: CreateProfileComponent, canActivate:[authGuard]},
+  { path: 'app-candidate-details-dialog', component: CandidateDetailsDialogComponent}
 ];
