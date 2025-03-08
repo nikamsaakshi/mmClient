@@ -1,0 +1,24 @@
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header" [ngClass]="{'bg-success': candidate?.isSuccess, 'bg-info': !candidate?.isSuccess}">
+      <h5 class="modal-title">Candidate Details</h5>
+      <button type="button" class="btn-close" (click)="onClose()"></button>
+    </div>
+    <div class="modal-body" *ngIf="candidate">
+      <p><strong>First Name:</strong> {{ candidate.firstName }} {{ candidate.middleName }} {{ candidate.lastName }}</p>
+      <p><strong>Date Of Birth:</strong> {{ candidate.dob | date:'longDate' }}</p>
+      <p><strong>Religion/Cast/Subcast:</strong> {{ candidate.religion }} {{ candidate.cast }} {{ candidate.subCast }}
+      </p>
+      <p><strong>Complexion:</strong> {{ candidate.complexion }}</p>
+      <p><strong>Height:</strong> {{ candidate.height }} Cm</p>
+      <p><strong>Weight:</strong> {{ candidate.weight }} Kg</p>
+      <p><strong>Village/City:</strong> {{ candidate.villageOrCity }}</p>
+      <p><strong>District:</strong> {{ candidate.district }}</p>
+      <p><strong>Contact:</strong> {{ candidate.maskedContactNumber }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success me-3" (click)="onSendInterest()">Send Interest</button>
+      <button class="btn btn-danger" (click)="onClose()">Close</button>
+    </div>
+  </div>
+</div>
