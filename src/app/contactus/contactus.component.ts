@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './contactus.component.css'
 })
 export class ContactusComponent {
-
 }

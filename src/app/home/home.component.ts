@@ -1,25 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { NavComponent } from '../nav/nav.component';
 import { AuthService } from '../auth.service';
 import { Modal } from 'bootstrap';
 import { Candidate } from '../candidate.model';
-// import { ProfilePhotoComponent } from '../profile-photo/profile-photo.component';
+import { AlertModalComponent } from "../alert-modal/alert-modal.component";
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, RouterModule, CommonModule],
+  imports: [FormsModule, RouterModule, CommonModule, AlertModalComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
 
+  @ViewChild('alertModal') alertModal!: AlertModalComponent;
   private loginModal!: Modal;
   private registerModal!: Modal;
   candidates: Candidate[] = [];
-  // private profilePhotoComponent: ProfilePhotoComponent;
 
   //login
   email: string = '';
@@ -50,11 +50,7 @@ export class HomeComponent {
   complexion: string = '';
   district: string = '';
 
-  //loggedin
-  isLoggedIn = false;
-
   constructor(private authService: AuthService, private router: Router) {
-    // this.profilePhotoComponent = new ProfilePhotoComponent(this.authService, this.router);
   }
 
   ngAfterViewInit() {
@@ -92,8 +88,11 @@ export class HomeComponent {
         this.mobileNumber
       ).subscribe(
         (response) => {
-          alert('Registration successful!!');
-          this.isLoggedIn = true;
+          alert(response.email +'  -  '+ response.candidateId);
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('candidateId', response.candidateId);
+          localStorage.setItem('candidateEmail', response.email);
+          this.showSuccess('Registration successful!!');
           this.closeRegisterModal();
           this.router.navigate(['create-profile']);
         },
@@ -112,22 +111,78 @@ export class HomeComponent {
       alert('Error in closeRegisterModal')
     }
   }
+  onCancel1() {
+    this.closeRegisterModal();
+    this.router.navigate(['home']);
+  }
 
   onLogin(form: NgForm) {
+    if (this.loginTitle === 'Logout') {
+      this.logout();
+    }
     if (form.valid) {
-      this.closeLoginModal();
-      this.router.navigate(['matching-profiles']);
-      // this.authService.login(this.email, this.password).subscribe(
-      //   (response) => {
-      //     this.closeLoginModal();
-      //     this.router.navigate(['matching-profiles']);
-      //   },
-      //   (error) => {
-      //     alert('Login failed ' + error);
-      //   }
-      // );
+      // this.closeLoginModal();
+      // this.router.navigate(['matching-profiles']);
+      this.authService.login(this.email, this.password).subscribe(
+        (response) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('candidateId', response.candidateId);
+          localStorage.setItem('candidateEmail', response.email);
+          this.closeLoginModal();
+          this.router.navigate(['matching-profiles']);
+        },
+        (error) => {
+          this.showError('Login failed!');
+          this.closeLoginModal();
+
+        }
+      );
     } else {
-      alert('Invalid form data')
+      this.showError('Invalid form data!');
     }
   }
+
+  get loginTitle() {
+    if (this.authService.isLoggedIn()) {
+      return 'Logout';
+    }
+    return 'Login';
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('candidateId');
+    localStorage.removeItem('candidateEmail');
+    this.showInfo("Logged out successfully!");
+    this.router.navigate(['home']);
+  }
+
+
+  onCancel() {
+    this.closeLoginModal();
+    this.router.navigate(['home']);
+  }
+
+
+
+  showSuccess(message: string) {
+    this.alertModal.open(message, 'Success', 'success');
+  }
+
+  showInfo(message: string) {
+    this.alertModal.open(message, 'Info', 'info');
+  }
+
+  showError(message: string) {
+    this.alertModal.open(message, 'Error', 'error');
+  }
+
+
+
+
+
+
+
+
+
 }

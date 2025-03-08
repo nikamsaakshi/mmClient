@@ -17,7 +17,12 @@
                         <input type="password" class="form-control" name="password" [(ngModel)]="password" required
                             maxlength="20">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" (click)="onCancel()" class="btn btn-secondary w-100">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -55,8 +60,11 @@
                             maxlength="10" pattern="[0-9]{10}">
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-6">
                         <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" (click)="onCancel1()" class="btn btn-secondary w-100">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -65,7 +73,7 @@
     </div>
 </div>
 
-<div id="pageContent" style="padding-top: 0;">
+<div id="pageContent" style="padding: 0;">
     <section class="hero min-vh-100 d-flex align-items-center">
         <div class="container">
             <div class="row align-items-center">
@@ -85,3 +93,5 @@
         </div>
     </section>
 </div>
+
+<app-alert-modal #alertModal></app-alert-modal>
