@@ -6,13 +6,14 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { FeaturesComponent } from './features/features.component';
 import { SuccessstoriesComponent } from './successstories/successstories.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'matching-profiles', component: MatchingProfilesComponent },
+  { path: 'matching-profiles', component: MatchingProfilesComponent, canActivate:[authGuard] },
   { path: 'contact-us', component: ContactusComponent},
   { path: 'features', component: FeaturesComponent},
-  { path: 'success-stories', component: SuccessstoriesComponent},
-  { path: 'create-profile', component: CreateProfileComponent}
+  { path: 'success-stories', component: SuccessstoriesComponent, canActivate:[authGuard]},
+  { path: 'create-profile', component: CreateProfileComponent, canActivate:[authGuard]}
 ];

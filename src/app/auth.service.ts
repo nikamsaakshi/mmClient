@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Candidate } from './candidate.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,9 @@ export class AuthService {
     this.http = httpClient;
   }
 
-  login(email: string, password: string): Observable<any> {
+  login(email: string,
+    password: string
+  ): Observable<any> {
     try {
       const body = { email, password };
       return this.http.post(`${this.baseUrl}/login`, body);
@@ -35,8 +38,20 @@ export class AuthService {
     }
   }
 
+  getCandidateProfileByCandidateId(candidateId: number): Observable<any> {
+    try {
+      return this.http.get(`${this.baseUrl}/getCandidateProfileByCandidateId/` + candidateId);
+    } catch (error) {
+      return of(error);
+    }
+  }
+
   saveCandidateProfile(
-    emailId: string, password: string, aadhaarNumber: string, mobileNumber: string): Observable<any> {
+    emailId: string,
+    password: string,
+    aadhaarNumber: string,
+    mobileNumber: string
+  ): Observable<any> {
     try {
       const body = {
         emailId,
@@ -55,47 +70,59 @@ export class AuthService {
 
 
   saveProfile(
-    candidateId: number,
-    firstName: string,
-    middleName: string,
-    lastName: string,
-    DOB: Date,
-    gender: string,
-    addressLine1: string,
-    addressLine2: string,
-    taluka: string,
-    district: string,
-    pincode: string,
-    villageOrcity: string,
-    religion: string,
-    cast: string,
-    subCast: string,
-    height: number,
-    weight: number,
-    complexion: string
+
+    imagemDocData: FormData
+    // candidateId: number,
+    // firstName: string,
+    // middleName: string,
+    // lastName: string,
+    // DOB: Date,
+    // gender: string,
+    // addressLine1: string,
+    // addressLine2: string,
+    // taluka: string,
+    // district: string,
+    // pincode: string,
+    // villageOrcity: string,
+    // religion: string,
+    // cast: string,
+    // subCast: string,
+    // height: number,
+    // weight: number,
+    // complexion: string,
+    // imagemDocData: FormData
+    // // photo: File,
+    // // bioData: File
   ): Observable<any> {
     try {
       const body = {
-        candidateId: 4,
-        firstName,
-        middleName,
-        lastName,
-        DOB,
-        gender,
-        addressLine1,
-        addressLine2,
-        taluka,
-        district,
-        pincode,
-        villageOrcity,
-        religion,
-        cast,
-        subCast,
-        height,
-        weight,
-        complexion
+        imagemDocData
+
+        // candidateId: 4,
+        // firstName,
+        // middleName,
+        // lastName,
+        // DOB,
+        // gender,
+        // addressLine1,
+        // addressLine2,
+        // taluka,
+        // district,
+        // pincode,
+        // villageOrcity,
+        // religion,
+        // cast,
+        // subCast,
+        // height,
+        // weight,
+        // complexion,
+        // imagemDocData
+        // // photo,
+        // // bioData
       };
-      return this.http.post(`${this.baseUrl}/saveCandidateProfile`, body);
+
+
+      return this.http.post(`${this.baseUrl}/saveCandidateProfile   `, imagemDocData);
     } catch (error) {
       alert(error);
       console.log('error');
@@ -104,12 +131,17 @@ export class AuthService {
     }
   }
 
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
   uploadImage(imageToBeuploade: FormData): Observable<any> {
-const body = {
-  imageToBeuploaded: imageToBeuploade
-};
-alert('kkkk ')
-   return this.http.post('http://localhost:5098/api/Candidate/uploadImage/'+'Sample', body);
+    const body = {
+      imageToBeuploaded: imageToBeuploade
+    };
+    alert('kkkk ')
+    return this.http.post('http://localhost:5098/api/Candidate/uploadImage/' + 'Sample', body);
     //  .subscribe({  next: (response: any) => {
     //     this.uploadResponse = response;
     //     console.log('Upload successful', response);

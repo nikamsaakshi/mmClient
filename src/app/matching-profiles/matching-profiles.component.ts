@@ -15,11 +15,7 @@ import { Candidate, CandidateProfileWithPhotos } from '../candidate.model';
 })
 export class MatchingProfilesComponent {
   candidates: CandidateProfileWithPhotos[] = [];
-  /**
-   *
-   */
   constructor(private authService: AuthService) {
-    
   }
   ngOnInit() {
     this.getMatchingProfilesByGender('female');
@@ -36,6 +32,4 @@ export class MatchingProfilesComponent {
       }
     });
   }
-  
-
 }

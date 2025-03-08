@@ -1,0 +1,14 @@
+<div class="custom-modal" [class.show]="visible" (click)="onOverlayClick($event)">
+    <div class="custom-modal-content" (click)="$event.stopPropagation()">
+      <div class="custom-modal-header" [ngClass]="type">
+        <h3>{{ title }}</h3>
+        <button class="close-btn" (click)="close()">&times;</button>
+      </div>
+      <div class="custom-modal-body">
+        <p>{{ message }}</p>
+      </div>
+      <div class="custom-modal-footer">
+        <button class="btn" (click)="close()">OK</button>
+      </div>
+    </div>
+  </div>

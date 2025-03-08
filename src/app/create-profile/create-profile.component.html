@@ -1,10 +1,13 @@
-<div id="profileModal" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg">
+<div id="profileModal" data-bs-backdrop="static" style=" border: 10px;">
+    <div class="modal-dialog modal-lg" style=" border: 10px;">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Complete Your Profile</h5>
-            </div>
-            <div style="width: fit-content;">
+            <h1>
+                <div class="centered-container">
+                    <div>Complete Your Profile</div>
+                </div>
+            </h1>
+
+            <div style="width: fit-content; padding: 20px;">
                 <form #profileForm="ngForm" (ngSubmit)="onSaveProfile(profileForm)" class="row g-3">
                     <div class="col-md-4">
                         <label class="form-label">First Name</label>
@@ -21,11 +24,11 @@
                         <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" required
                             maxlength="100">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label">Date of Birth</label>
                         <input type="date" class="form-control" [(ngModel)]="DOB" name="DOB" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label">Gender</label>
                         <select class="form-select" [(ngModel)]="gender" name="gender" required>
                             <option value="">Choose...</option>na
@@ -35,18 +38,18 @@
                         </select>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-md-4">
                         <label class="form-label">Address Line 1</label>
                         <input type="text" class="form-control" [(ngModel)]="addressLine1" name="addressLine1"
                             maxlength="100">
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-4">
                         <label class="form-label">Address Line 2</label>
                         <input type="text" class="form-control" [(ngModel)]="addressLine2" name="addressLine2"
                             maxlength="100">
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label">Taluka</label>
                         <input type="text" class="form-control" [(ngModel)]="taluka" name="taluka" required
                             maxlength="100">
@@ -61,7 +64,7 @@
                         <input type="text" class="form-control" [(ngModel)]="pincode" name="pincode" required
                             maxlength="6" pattern="[0-9]{6}">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label">Village/City</label>
                         <input type="text" class="form-control" [(ngModel)]="villageOrcity" name="villageOrCity"
                             required maxlength="100">
@@ -79,22 +82,33 @@
                         <label class="form-label">Sub Cast</label>
                         <input type="text" class="form-control" [(ngModel)]="subCast" name="subCast" maxlength="50">
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label">height</label>
+                    <div class="col-md-2">
+                        <label class="form-label">Height</label>
                         <input type="text" class="form-control" [(ngModel)]="height" name="height" maxlength="50">
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">weight</label>
+                    <div class="col-md-2">
+                        <label class="form-label">Weight</label>
                         <input type="text" class="form-control" [(ngModel)]="weight" name="weight" maxlength="50">
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">complexion</label>
+                        <label class="form-label">Complexion</label>
                         <input type="text" class="form-control" [(ngModel)]="complexion" name="complexion"
                             maxlength="50">
                     </div>
-                    <div class="col-12">
+                    <div class="col-md-4">
+                        <label class="form-label">Photo</label>
+                        <input type="file" (change)="onPhotoSelected($event)"  required>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Biodata</label>
+                        <input type="file" (change)="onBiodataSelected($event)"  required>
+                    </div>
+                    <div class="col-6">
                         <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" (click)="onCancel()" class="btn btn-secondary w-100">Cancel</button>
                     </div>
                 </form>
             </div>

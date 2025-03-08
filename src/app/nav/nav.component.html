@@ -29,10 +29,16 @@
                 <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('matching-profiles')">Matching Profiles</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="navigateTo('create-profile')">Complete Profile</a>
+                </li>
                 
                 <li class="nav-item">
-                    <button class="btn btn-primary ms-3" data-bs-toggle="modal"
+                    <button *ngIf="!isLogin()" class="btn btn-primary ms-3" data-bs-toggle="modal"
                         data-bs-target="#loginModal">Login</button>
+
+                        <button *ngIf="isLogin()" (click)="logOut()" class="btn btn-primary ms-3"
+                        >Logout</button>
                 </li>
                 <!-- <li>
                     <button class="btn btn-primary ms-3" (click)="openLoginModal()">Login New</button>
