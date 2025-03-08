@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Candidate, CandidateProfileWithPhotos } from '../candidate.model';
 
-
 @Component({
   selector: 'app-matching-profiles',
   imports: [RouterModule, FormsModule, CommonModule],
@@ -15,20 +14,20 @@ import { Candidate, CandidateProfileWithPhotos } from '../candidate.model';
 })
 export class MatchingProfilesComponent {
   candidates: CandidateProfileWithPhotos[] = [];
+  mergedData: any;
   constructor(private authService: AuthService) {
   }
   ngOnInit() {
-    this.getMatchingProfilesByGender('female');
+    this.getMatchingProfilesByGender('male');
   }
 
   getMatchingProfilesByGender(gender: string) {
     this.authService.getMatchingProfilesByGender(gender).subscribe({
       next: (response) => {
         this.candidates = response;
-        console.log(this.candidates);
       },
       error: (error) => {
-         alert('Error in getMatchingProfilesByGender' + error);
+        alert('Error in getMatchingProfilesByGender' + error);
       }
     });
   }
