@@ -3,7 +3,7 @@
     <h2 class="text-center mb-5">Matching profiles</h2>
     <div class="row g-4" *ngIf="candidates">
       <div *ngFor="let item of candidates" class="col-md-6">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 shadow-sm" style="background-color: azure;">
           <div class="card-body">
             <div class="row">
               <!-- Left Column: Image -->
@@ -14,7 +14,8 @@
               <div class="col-md-8">
                 <h6>
                   <a href="#" (click)="openPopup(item); $event.preventDefault(); $event.stopPropagation();">
-                    {{ item.firstName }} &nbsp; {{ item.lastName }}
+                    <!-- {{ item.firstName }} {{ item.lastName }} {{item.candidateId}} -->
+                    Profile #{{item.candidateId}}
                   </a>
                 </h6>
                 <p><strong>DOB:</strong> {{ item.dob }} </p>
