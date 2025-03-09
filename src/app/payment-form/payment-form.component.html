@@ -1,0 +1,94 @@
+<div class="container mt-4" style="background-color: #dee7e0; padding: 20px; border-radius: 8px;">
+  <h2>Payment Gateway</h2>
+  <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
+    <div class="mb-3">
+      <label class="form-label me-2">Payment Method:</label>
+      <label class="me-2">
+        <input type="radio" name="paymentMethod" value="CreditCard" [(ngModel)]="paymentMethod" required>
+        Credit Card
+      </label>
+      <label>
+        <input type="radio" name="paymentMethod" value="UPI" [(ngModel)]="paymentMethod" required>
+        UPI
+      </label>
+    </div>
+
+    <!-- Credit Card Fields -->
+    <div *ngIf="paymentMethod === 'CreditCard'">
+      <div class="mb-3">
+        <label class="form-label">Card Number:</label>
+        <div class="input-group">
+          <span class="input-group-text bg-info text-white">
+            <fa-icon [icon]="faCreditCard"></fa-icon>
+          </span>
+          <input type="text" class="form-control" name="cardNumber" [(ngModel)]="paymentData.cardNumber" required
+            pattern="^[0-9]{16}$" #cardNumber="ngModel" style="background-color: #f0f8ff;">
+        </div>
+        <div *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)" class="text-danger">
+          Card number must be exactly 16 digits.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Expiry Date (MM/YY):</label>
+        <input type="text" class="form-control" name="expiryDate" [(ngModel)]="paymentData.expiryDate" required
+          pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" #expiryDate="ngModel">
+        <div *ngIf="expiryDate.invalid && (expiryDate.dirty || expiryDate.touched)" class="text-danger">
+          Expiry date must be in MM/YY format.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">CVV:</label>
+        <input type="text" class="form-control" name="cvv" [(ngModel)]="paymentData.cvv" required pattern="^[0-9]{3,4}$"
+          #cvv="ngModel">
+        <div *ngIf="cvv.invalid && (cvv.dirty || cvv.touched)" class="text-danger">
+          CVV must be 3 or 4 digits.
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Card Holder Name:</label>
+        <input type="text" class="form-control" name="cardHolderName" [(ngModel)]="paymentData.cardHolderName" required
+          pattern="^[a-zA-Z ]+$" #cardHolderName="ngModel">
+        <div *ngIf="cardHolderName.invalid && (cardHolderName.dirty || cardHolderName.touched)" class="text-danger">
+          Card Holder Name must contain only letters and spaces.
+        </div>
+      </div>
+    </div>
+
+    <!-- UPI Field -->
+    <div *ngIf="paymentMethod === 'UPI'">
+      <div class="mb-3">
+        <label class="form-label">UPI ID:</label>
+        <input type="text" class="form-control" name="upiId" [(ngModel)]="paymentData.upiId" required #upiId="ngModel">
+        <div *ngIf="upiId.invalid && (upiId.dirty || upiId.touched)" class="text-danger">
+          UPI ID is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Common Field: Amount -->
+    <div class="mb-3">
+      <label class="form-label">Amount:</label>
+      <div class="input-group">
+        <span class="input-group-text bg-info text-white">
+          <fa-icon [icon]="faInr"></fa-icon>
+        </span>
+        <input type="number" class="form-control" name="amount" [(ngModel)]="paymentData.amount" required min="1"
+          #amount="ngModel">
+      </div>
+      <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="text-danger">
+        Amount is required and must be a positive number.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary"
+    [ngStyle]="{ 'background-color': paymentForm.invalid ? 'grey' : '#0d6efd' }" 
+    [disabled]="paymentForm.invalid">Pay Now</button>
+  </form>
+
+  <div *ngIf="paymentResponse" class="alert alert-success mt-3">
+    <h4>Payment Successful</h4>
+    <p>Transaction ID: {{ paymentResponse.transactionId }}</p>
+  </div>
+  <div *ngIf="paymentError" class="alert alert-danger mt-3">
+    {{ paymentError }}
+  </div>
+</div>

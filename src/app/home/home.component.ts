@@ -88,7 +88,6 @@ export class HomeComponent {
         this.mobileNumber
       ).subscribe(
         (response) => {
-          alert(response.email +'  -  '+ response.candidateId);
           localStorage.setItem('token', response.token);
           localStorage.setItem('candidateId', response.candidateId);
           localStorage.setItem('candidateEmail', response.email);
@@ -128,6 +127,7 @@ export class HomeComponent {
           localStorage.setItem('token', response.token);
           localStorage.setItem('candidateId', response.candidateId);
           localStorage.setItem('candidateEmail', response.email);
+          localStorage.setItem('isPremium', response.isPremium);
           this.closeLoginModal();
           this.router.navigate(['matching-profiles']);
         },
