@@ -38,4 +38,5 @@ export class CandidateProfileWithPhotos {
   district!: string;
   maskedContactNumber!: string;
   age!: string;
+  isPremium!: boolean;
 }

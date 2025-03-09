@@ -87,5 +87,30 @@ export class AuthService {
   getImages(): Observable<any> {
     return this.http.get(`http://localhost:5098/api/Candidate/getImages`);
   }
+
+  processPayment(): Observable<boolean> {
+    let candidateId = '';
+    if (localStorage?.getItem('candidateId')) {
+      candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
+    }
+    alert(candidateId);
+    let response = this.http.post(`${this.baseUrl}/updatePremium/` + candidateId);
+    if (response) {
+      return of(true);
+    }
+    return of(false);
+  }
+}
+
+export interface PaymentRequest1 {
+  paymentMethod: 'CreditCard' | 'UPI';
+  // Credit Card Fields
+  cardNumber?: string;
+  expiryDate?: string;
+  cvv?: string;
+  cardHolderName?: string;
+  // UPI Field
+  upiId?: string;
+  amount: number;
 }
 

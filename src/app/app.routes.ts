@@ -8,6 +8,7 @@ import { SuccessstoriesComponent } from './successstories/successstories.compone
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { authGuard } from './auth.guard';
 import { CandidateDetailsDialogComponent } from './candidate-details-dialog/candidate-details-dialog.component';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,5 +18,6 @@ export const routes: Routes = [
   { path: 'features', component: FeaturesComponent},
   { path: 'success-stories', component: SuccessstoriesComponent, canActivate:[authGuard]},
   { path: 'create-profile', component: CreateProfileComponent, canActivate:[authGuard]},
-  { path: 'app-candidate-details-dialog', component: CandidateDetailsDialogComponent}
+  { path: 'app-candidate-details-dialog', component: CandidateDetailsDialogComponent},
+  { path: 'app-payment-form', component: PaymentFormComponent, canActivate:[authGuard]},
 ];
