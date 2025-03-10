@@ -1,11 +1,11 @@
 <div id="profileModal" data-bs-backdrop="static" style=" border: 10px;">
     <div class="modal-dialog modal-lg" style=" border: 10px;">
         <div class="modal-content">
-            <h1>
+            <h4>
                 <div class="centered-container">
                     <div>Complete Your Profile</div>
                 </div>
-            </h1>
+            </h4>
 
             <div style="width: fit-content; padding: 20px;">
                 <form #profileForm="ngForm" (ngSubmit)="onSaveProfile(profileForm)" class="row g-3">
@@ -26,12 +26,19 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" [(ngModel)]="DOB" name="DOB" required>
+                        <input type="date" #dobField="ngModel" class="form-control" [(ngModel)]="DOB" [max]="maxDate"
+                            name="DOB" required>
+                        <div *ngIf="dobField.invalid && (dobField.dirty || dobField.touched)">
+                            <div *ngIf="dobField.errors?.['required']">Date of birth is required.</div>
+                            <div *ngIf="dobField.errors?.['max']">
+                                You must be at least 18 years old.
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Gender</label>
                         <select class="form-select" [(ngModel)]="gender" name="gender" required>
-                            <option value="">Choose...</option>na
+                            <option value="">Choose...</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
@@ -66,25 +73,86 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Village/City</label>
-                        <input type="text" class="form-control" [(ngModel)]="villageOrcity" name="villageOrCity"
+                        <input type="text" class="form-control" [(ngModel)]="villageOrCity" name="villageOrCity"
                             required maxlength="100">
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Religion</label>
-                        <input type="text" class="form-control" [(ngModel)]="religion" name="religion" required
-                            maxlength="50">
+                        <select class="form-select" [(ngModel)]="religion" name="religion" required>
+                            <option value="">Choose Religion...</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Muslim">Muslim</option>
+                            <option value="Christian">Christian</option>
+                            <option value="Sikh">Sikh</option>
+                            <option value="Buddhist">Buddhist</option>
+                            <option value="Jain">Jain</option>
+                            <option value="Parsi">Parsi</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Cast</label>
-                        <input type="text" class="form-control" [(ngModel)]="cast" name="cast" required maxlength="50">
+                        <select class="form-select" [(ngModel)]="cast" name="cast" required>
+                            <option value="">Choose Caste...</option>
+                            <option value="Brahmin">Brahmin</option>
+                            <option value="Kshatriya">Kshatriya</option>
+                            <option value="Vaishya">Vaishya</option>
+                            <option value="Shudra">Shudra</option>
+                            <option value="Rajput">Rajput</option>
+                            <option value="Maratha">Maratha</option>
+                            <option value="Patel">Patel</option>
+                            <option value="Kayastha">Kayastha</option>
+                            <option value="Nair">Nair</option>
+                            <option value="Jat">Jat</option>
+                            <option value="Yadav">Yadav</option>
+                            <option value="Sindhi">Sindhi</option>
+                            <option value="Baniya">Baniya</option>
+                            <option value="Scheduled Caste">Scheduled Caste</option>
+                            <option value="Scheduled Tribe">Scheduled Tribe</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Sub Cast</label>
-                        <input type="text" class="form-control" [(ngModel)]="subCast" name="subCast" maxlength="50">
+                        <select class="form-select" [(ngModel)]="subCast" name="subCast" required>
+                            <option value="">Choose Sub Caste...</option>
+
+                            <optgroup label="Brahmin">
+                                <option value="Iyer">Iyer</option>
+                                <option value="Iyengar">Iyengar</option>
+                                <option value="Namboodiri">Namboodiri</option>
+                                <option value="Vaidiki">Vaidiki</option>
+                                <option value="Kanyakubja">Kanyakubja</option>
+                                <option value="Saraswat">Saraswat</option>
+                                <option value="Kashmiri Brahmin">Kashmiri Brahmin</option>
+                                <option value="Madhwa">Madhwa</option>
+                            </optgroup>
+
+                            <optgroup label="Kshatriya">
+                                <option value="Rajput - Chauhan">Rajput - Chauhan</option>
+                                <option value="Rajput - Rathore">Rajput - Rathore</option>
+                                <option value="Rajput - Sisodia">Rajput - Sisodia</option>
+                                <option value="Maratha">Maratha</option>
+                                <option value="Jat">Jat</option>
+                            </optgroup>
+
+                            <optgroup label="Vaishya">
+                                <option value="Agarwal">Agarwal</option>
+                                <option value="Maheshwari">Maheshwari</option>
+                                <option value="Oswal">Oswal</option>
+                                <option value="Jaiswal">Jaiswal</option>
+                                <option value="Khandelwal">Khandelwal</option>
+                            </optgroup>
+
+                            <optgroup label="Other Communities">
+                                <option value="Other">Other</option>
+                            </optgroup>
+                        </select>
                     </div>
+
                     <div class="col-md-2">
                         <label class="form-label">Height</label>
-                        <input type="text" class="form-control" [(ngModel)]="height" name="height" maxlength="50">
+                        <input type="number" class="form-control" [(ngModel)]="height" name="height" required min="1">
                     </div>
 
                     <div class="col-md-2">
@@ -93,16 +161,22 @@
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Complexion</label>
-                        <input type="text" class="form-control" [(ngModel)]="complexion" name="complexion"
-                            maxlength="50">
+                        <select class="form-select" [(ngModel)]="complexion" name="complexion" required>
+                            <option value="">Choose...</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Light">Light</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Dark">Dark</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Photo</label>
-                        <input type="file" (change)="onPhotoSelected($event)"  required>
+                        <input type="file" (change)="onPhotoSelected($event)" required>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Biodata</label>
-                        <input type="file" (change)="onBiodataSelected($event)"  required>
+                        <input type="file" (change)="onBiodataSelected($event)" required>
                     </div>
                     <div class="col-6">
                         <button type="submit" class="btn btn-primary w-100">Save Profile</button>

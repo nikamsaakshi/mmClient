@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -12,7 +12,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-profile.component.css'
 })
 
-export class CreateProfileComponent implements AfterViewInit {
+export class CreateProfileComponent implements OnInit, AfterViewInit {
+  dob: string = '';
+  maxDate!: string;
   onFileSelected($event: Event) {
     throw new Error('Method not implemented.');
   }
@@ -31,7 +33,7 @@ export class CreateProfileComponent implements AfterViewInit {
   taluka: string = '';
   district: string = '';
   pincode: string = '';
-  villageOrcity: string = '';
+  villageOrCity: string = '';
   religion: string = '';
   cast: string = '';
   subCast: string = '';
@@ -45,6 +47,15 @@ export class CreateProfileComponent implements AfterViewInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+
+  ngOnInit(): void {
+    const today = new Date();
+    const year = today.getFullYear() - 18;
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    this.maxDate = `${year}-${month}-${day}`;
+  }
+
   ngAfterViewInit(): void {
     let candidateId = '';
     if (localStorage?.getItem('candidateId')) {
@@ -52,6 +63,9 @@ export class CreateProfileComponent implements AfterViewInit {
     }
     if (this.authService.isLoggedIn()) {
       this.authService.getCandidateProfileByCandidateId(Number(candidateId)).subscribe((response) => {
+
+        console.log('=========================');
+        console.log(response);
         this.candidateId = Number(candidateId);
         this.firstName = response.firstName;
         this.lastName = response.lastName;
@@ -68,7 +82,7 @@ export class CreateProfileComponent implements AfterViewInit {
         this.weight = response.weight;
         this.district = response.district;
         this.taluka = response.taluka;
-        this.villageOrcity = response.villageOrcity;
+        this.villageOrCity = response.villageOrCity;
         this.religion = response.religion;
       });
     } else {
@@ -98,7 +112,7 @@ export class CreateProfileComponent implements AfterViewInit {
     imagemDocData.append('taluka', this.taluka);
     imagemDocData.append('district', this.district);
     imagemDocData.append('pincode', this.pincode);
-    imagemDocData.append('villageOrcity', this.villageOrcity);
+    imagemDocData.append('villageOrcity', this.villageOrCity);
     imagemDocData.append('religion', this.religion);
     imagemDocData.append('cast', this.cast);
     imagemDocData.append('subcast', this.subCast);
@@ -117,6 +131,7 @@ export class CreateProfileComponent implements AfterViewInit {
           alert('onSaveProfile failed ' + error);
         });
     } else {
+      alert(form.errors);
       alert('onSaveProfile - Invalid')
     }
   }

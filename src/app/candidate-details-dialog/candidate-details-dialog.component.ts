@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-candidate-details-dialog',
@@ -10,7 +11,7 @@ import { AuthService } from '../auth.service';
   styleUrl: './candidate-details-dialog.component.css'
 })
 export class CandidateDetailsDialogComponent implements OnInit {
-
+  
   @Input() candidateId!: number;
   @Output() closeDialog = new EventEmitter<void>();
   candidate: any;
@@ -18,6 +19,7 @@ export class CandidateDetailsDialogComponent implements OnInit {
   constructor(private candidateService: AuthService) { }
 
   ngOnInit(): void {
+   
     this.candidateService.getCandidateProfileByCandidateId(this.candidateId).subscribe({
       next: (data) => this.candidate = data,
       error: (err) => alert(err)
