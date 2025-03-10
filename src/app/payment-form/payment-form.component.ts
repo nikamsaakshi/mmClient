@@ -36,6 +36,7 @@ export class PaymentFormComponent {
     this.paymentData.paymentMethod = this.paymentMethod;
     this.paymentService.processPayment().subscribe({
       next: (response) => {
+        alert(response)
         localStorage.setItem('isPremium', '1');
         this.paymentResponse = response;
         this.paymentError = null;

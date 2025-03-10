@@ -110,7 +110,7 @@ export class HomeComponent {
       alert('Error in closeRegisterModal')
     }
   }
-  onCancel1() {
+  onCancelCloseRegisterModal() {
     this.closeRegisterModal();
     this.router.navigate(['home']);
   }
@@ -153,17 +153,15 @@ export class HomeComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('candidateId');
     localStorage.removeItem('candidateEmail');
+    localStorage.removeItem('isPremium');
     this.showInfo("Logged out successfully!");
     this.router.navigate(['home']);
   }
-
 
   onCancel() {
     this.closeLoginModal();
     this.router.navigate(['home']);
   }
-
-
 
   showSuccess(message: string) {
     this.alertModal.open(message, 'Success', 'success');
@@ -176,13 +174,4 @@ export class HomeComponent {
   showError(message: string) {
     this.alertModal.open(message, 'Error', 'error');
   }
-
-
-
-
-
-
-
-
-
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Candidate } from './candidate.model';
 
@@ -93,12 +93,12 @@ export class AuthService {
     if (localStorage?.getItem('candidateId')) {
       candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
     }
-    alert(candidateId);
-    let response = this.http.post(`${this.baseUrl}/updatePremium/` + candidateId);
-    if (response) {
-      return of(true);
-    }
-    return of(false);
+    return this.http.post(`${this.baseUrl}/updatePremium/` + candidateId).pipe(
+      map((response: any) => {
+        return !!response;
+      }),
+      catchError(() => of(false))
+    );
   }
 }
 
