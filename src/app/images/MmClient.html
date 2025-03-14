@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://localhost:4200/home -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script type="module" src="./MmClient_files/client"></script>
+
+  
+  <title>MmClient</title>
+  <!--<base href="/">--><base href=".">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="http://localhost:4200/favicon.ico">
+  <link rel="stylesheet" href="./MmClient_files/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6xR1oN9Kq2zsPZK+X1WlK8j7A3jIQGHpYt9m4L5P8+1FzuvlRVhkXlfJXvcdWz7Qxv2w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+<link rel="stylesheet" href="./MmClient_files/styles.css"><style>@import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css";
+
+
+
+[_ngcontent-ng-c768831496]:root {
+  --primary: #0d6efd;
+  --primary-foreground: #ffffff;
+  --secondary: #6c757d;
+  --secondary-foreground: #ffffff;
+  --accent: #e9ecef;
+  --accent-foreground: #212529;
+  --background: #ffffff;
+  --foreground: #212529;
+  --card: #ffffff;
+  --card-foreground: #212529;
+  --popover: #ffffff;
+  --popover-foreground: #212529;
+  --muted: #6c757d;
+  --muted-foreground: #ffffff;
+  --destructive: #dc3545;
+  --destructive-foreground: #ffffff;
+  --border: #dee2e6;
+  --input: #dee2e6;
+  --ring: #0d6efd;
+  --radius: 0.5rem;
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+body[_ngcontent-ng-c768831496] {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+  padding-top: 76px;
+}
+.navbar[_ngcontent-ng-c768831496] {
+  box-shadow: var(--shadow);
+}
+.hero[_ngcontent-ng-c768831496] {
+  background-color: var(--background);
+  padding: 80px 0;
+}
+.card[_ngcontent-ng-c768831496] {
+  transition: transform 0.3s ease;
+  border-radius: var(--radius);
+}
+.card[_ngcontent-ng-c768831496]:hover {
+  transform: translateY(-5px);
+}
+.btn[_ngcontent-ng-c768831496] {
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+}
+.btn-primary[_ngcontent-ng-c768831496] {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-outline-primary[_ngcontent-ng-c768831496] {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.modal-content[_ngcontent-ng-c768831496] {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.modal-body[_ngcontent-ng-c768831496] {
+  padding: 2rem;
+}
+.form-label[_ngcontent-ng-c768831496] {
+  font-weight: 500;
+  color: var(--foreground);
+}
+.form-control[_ngcontent-ng-c768831496], 
+.form-select[_ngcontent-ng-c768831496] {
+  border-color: var(--border);
+  padding: 0.75rem 1rem;
+}
+.form-control[_ngcontent-ng-c768831496]:focus, 
+.form-select[_ngcontent-ng-c768831496]:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+#testimonials[_ngcontent-ng-c768831496]   .card[_ngcontent-ng-c768831496]   img[_ngcontent-ng-c768831496] {
+  height: 200px;
+  object-fit: cover;
+}
+footer[_ngcontent-ng-c768831496]   a[_ngcontent-ng-c768831496]:hover {
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+section[_ngcontent-ng-c768831496] {
+  scroll-margin-top: 76px;
+}
+@media (max-width: 768px) {
+  .hero[_ngcontent-ng-c768831496] {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .hero[_ngcontent-ng-c768831496]   .btn[_ngcontent-ng-c768831496] {
+    margin-bottom: 1rem;
+  }
+}
+.modal-lg[_ngcontent-ng-c768831496]   .modal-body[_ngcontent-ng-c768831496] {
+  padding: 2rem;
+}
+.modal-lg[_ngcontent-ng-c768831496]   .form-label[_ngcontent-ng-c768831496] {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.modal-lg[_ngcontent-ng-c768831496]   .form-control[_ngcontent-ng-c768831496], 
+.modal-lg[_ngcontent-ng-c768831496]   .form-select[_ngcontent-ng-c768831496] {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+.feature-card[_ngcontent-ng-c768831496] {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card[_ngcontent-ng-c768831496]:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+}
+.success-story-card[_ngcontent-ng-c768831496] {
+  overflow: hidden;
+}
+.success-story-card[_ngcontent-ng-c768831496]   img[_ngcontent-ng-c768831496] {
+  transition: transform 0.3s ease;
+}
+.success-story-card[_ngcontent-ng-c768831496]:hover   img[_ngcontent-ng-c768831496] {
+  transform: scale(1.1);
+}
+.contact-info[_ngcontent-ng-c768831496] {
+  background: var(--accent);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.contact-form[_ngcontent-ng-c768831496]   .form-control[_ngcontent-ng-c768831496] {
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+/*# sourceMappingURL=/app.component.css.map */</style><style>
+
+a[_ngcontent-ng-c3745738408]:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=/nav.component.css.map */</style><style>
+
+.custom-modal[_ngcontent-ng-c3520408470] {
+  display: none;
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.custom-modal.show[_ngcontent-ng-c3520408470] {
+  display: flex;
+}
+.custom-modal-content[_ngcontent-ng-c3520408470] {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.custom-modal-header[_ngcontent-ng-c3520408470] {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e9ecef;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+.custom-modal-header.success[_ngcontent-ng-c3520408470] {
+  background-color: #d4edda;
+  color: #155724;
+}
+.custom-modal-header.info[_ngcontent-ng-c3520408470] {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+.close-btn[_ngcontent-ng-c3520408470] {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.custom-modal-body[_ngcontent-ng-c3520408470] {
+  margin-bottom: 15px;
+}
+.custom-modal-footer[_ngcontent-ng-c3520408470] {
+  text-align: right;
+}
+.btn[_ngcontent-ng-c3520408470] {
+  padding: 8px 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn[_ngcontent-ng-c3520408470]:hover {
+  background-color: #0056b3;
+}
+/*# sourceMappingURL=/alert-modal.component.css.map */</style></head>
+<body>
+  <app-root ng-version="19.1.7" _nghost-ng-c768831496="">
+<!-- saved from url=(0026)http://localhost:4200/home -->
+<html _ngcontent-ng-c768831496="" lang="en"><head _ngcontent-ng-c768831496=""><meta _ngcontent-ng-c768831496="" name="viewport" content="width=device-width, initial-scale=1.0"><title _ngcontent-ng-c768831496="">Forever Together - Find Your Soulmate</title><link _ngcontent-ng-c768831496="" href="./MmClient_files/bootstrap.min.css" rel="stylesheet"></head><body _ngcontent-ng-c768831496=""><app-nav _ngcontent-ng-c768831496="" _nghost-ng-c3745738408=""><nav _ngcontent-ng-c3745738408="" class="navbar navbar-expand-lg fixed-top bg-white"><div _ngcontent-ng-c3745738408="" class="container"><a _ngcontent-ng-c3745738408="" href="http://localhost:4200/index.html" class="navbar-brand"><img _ngcontent-ng-c3745738408="" src="./MmClient_files/photo-1496200186974-4293800e2c20" alt="Logo" class="rounded-circle me-2">Forever Together </a><button _ngcontent-ng-c3745738408="" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler"><span _ngcontent-ng-c3745738408="" class="navbar-toggler-icon"></span></button><div _ngcontent-ng-c3745738408="" id="navbarNav" class="collapse navbar-collapse"><ul _ngcontent-ng-c3745738408="" class="navbar-nav ms-auto"><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Home</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Features</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Payment</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Success Stories</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Contact Us</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Matching Profiles</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Complete Profile</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><a _ngcontent-ng-c3745738408="" class="nav-link">Sent &amp; Received</a></li><li _ngcontent-ng-c3745738408="" class="nav-item"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><button _ngcontent-ng-c3745738408="" class="btn btn-primary ms-3" fdprocessedid="b22gib">Logout</button><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></li></ul></div></div></nav></app-nav><main _ngcontent-ng-c768831496="" class="content" style="background-color: #f8f9fa;"><router-outlet _ngcontent-ng-c768831496=""></router-outlet><app-home><div id="loginModal" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Login</h5><button type="button" class="btn-close"></button></div><div class="modal-body"><form novalidate="" autocomplete="off" class="ng-untouched ng-pristine ng-valid"><div class="mb-3"><label class="form-label">Email ID</label><input type="email" name="emailId" required="" maxlength="100" class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-required="" ng-reflect-maxlength="100" ng-reflect-name="emailId" ng-reflect-model="nikita05@gmail.com"></div><div class="mb-3"><label class="form-label">Password</label><input type="password" name="password" required="" maxlength="20" class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-required="" ng-reflect-maxlength="20" ng-reflect-name="password" ng-reflect-model="nikita05@gmail.com"></div><div class="mb-3"><button type="submit" class="btn btn-primary w-100">Login</button></div><div class="mb-3"><button type="button" class="btn btn-secondary w-100">Cancel</button></div></form></div></div></div></div><div id="registerModal" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">Register</h5><button type="button" data-bs-dismiss="modal" class="btn-close"></button></div><div class="modal-body"><form novalidate="" class="row g-3 ng-untouched ng-pristine ng-invalid"><div class="col-12"><label class="form-label">Email</label><input type="email" name="email" required="" maxlength="100" class="form-control ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-maxlength="100" ng-reflect-name="email" ng-reflect-model=""></div><div class="col-12"><label class="form-label">Password</label><input type="password" name="password" required="" maxlength="20" class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-required="" ng-reflect-maxlength="20" ng-reflect-name="password" ng-reflect-model="nikita05@gmail.com"></div><div class="col-12"><label class="form-label">Aadhaar Number</label><input type="aadhaarNo" name="aadhaarNumber" required="" maxlength="20" class="form-control ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-maxlength="20" ng-reflect-name="aadhaarNumber" ng-reflect-model=""></div><div class="col-12"><label class="form-label">Mobile Number</label><input type="tel" name="mobileNumber" required="" maxlength="10" pattern="[0-9]{10}" class="form-control ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-maxlength="10" ng-reflect-pattern="[0-9]{10}" ng-reflect-name="mobileNumber" ng-reflect-model=""></div><div class="col-6"><button type="submit" class="btn btn-primary w-100">Register</button></div><div class="col-6"><button type="button" class="btn btn-secondary w-100">Cancel</button></div></form></div></div></div></div><div id="pageContent" style="padding: 0;"><section class="hero min-vh-100 d-flex align-items-center"><div class="container"><div class="row align-item-top"><div class="col-lg-6"><h1 class="display-4 fw-bold mb-4">Find Your Perfect Match</h1><p class="lead mb-4">Join thousands of happy couples who found their soulmate through Forever Together. Your perfect match is just a click away.</p><button data-bs-toggle="modal" data-bs-target="#registerModal" class="btn btn-primary btn-lg me-3" fdprocessedid="n2w5hr">Register Free</button><button class="btn btn-outline-primary btn-lg" fdprocessedid="el788n">Learn More</button></div><div class="col-lg-4"><img src="./MmClient_files/photo-1516589178581-6cd7833ae3b2" alt="Happy Couple" class="img-fluid rounded-4"></div></div></div></section></div><app-alert-modal _nghost-ng-c3520408470=""><div _ngcontent-ng-c3520408470="" class="custom-modal"><div _ngcontent-ng-c3520408470="" class="custom-modal-content"><div _ngcontent-ng-c3520408470="" class="custom-modal-header info" ng-reflect-ng-class="info"><h3 _ngcontent-ng-c3520408470="">Alert</h3><button _ngcontent-ng-c3520408470="" class="close-btn">×</button></div><div _ngcontent-ng-c3520408470="" class="custom-modal-body"><p _ngcontent-ng-c3520408470=""></p></div><div _ngcontent-ng-c3520408470="" class="custom-modal-footer"><button _ngcontent-ng-c3520408470="" class="btn">OK</button></div></div></div></app-alert-modal></app-home><!--container--></main><footer _ngcontent-ng-c768831496="" class="bg-dark text-light py-5"><div _ngcontent-ng-c768831496="" class="container"><div _ngcontent-ng-c768831496="" class="row"><div _ngcontent-ng-c768831496="" class="col-md-4 mb-4"><h5 _ngcontent-ng-c768831496="">Forever Together</h5><p _ngcontent-ng-c768831496="">Making meaningful connections since 202.</p></div><div _ngcontent-ng-c768831496="" class="col-md-4 mb-4"><h5 _ngcontent-ng-c768831496="">Quick Links</h5><ul _ngcontent-ng-c768831496="" class="list-unstyled"><li _ngcontent-ng-c768831496=""><a _ngcontent-ng-c768831496="" href="http://localhost:4200/#" class="text-light">About Us</a></li><li _ngcontent-ng-c768831496=""><a _ngcontent-ng-c768831496="" href="http://localhost:4200/#" class="text-light">Privacy Policy</a></li><li _ngcontent-ng-c768831496=""><a _ngcontent-ng-c768831496="" href="http://localhost:4200/#" class="text-light">Terms of Service</a></li></ul></div><div _ngcontent-ng-c768831496="" class="col-md-4 mb-4"><h5 _ngcontent-ng-c768831496="">Contact Us</h5><ul _ngcontent-ng-c768831496="" class="list-unstyled"><li _ngcontent-ng-c768831496="">Email: infoforevertogether.com</li><li _ngcontent-ng-c768831496="">Phone: +91 1234567890</li></ul></div></div></div></footer></body></html></app-root>
+  <!-- <router-outlet></router-outlet> -->
+
+  
+<script src="./MmClient_files/polyfills.js.download" type="module"></script><script src="./MmClient_files/main.js.download" type="module"></script>
+
+<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>

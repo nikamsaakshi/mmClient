@@ -8,14 +8,14 @@
             <div class="row">
               <!-- Left Column: Image -->
               <div class="col-md-4 d-flex align-items-center">
-                <img [src]="item.photoPath" [alt]="item.firstName" class="img-thumbnail w-100">
+                <img [src]="item.photoPath" [alt]="item.firstName" class="img-thumbnail w-100 filterImage">
               </div>
               <!-- Right Column: Info -->
               <div class="col-md-8">
                 <h6>
                   <a href="#" (click)="openPopup(item); $event.preventDefault(); $event.stopPropagation();">
                     <!-- {{ item.firstName }} {{ item.lastName }} {{item.candidateId}} -->
-                    Profile #{{item.candidateId}}
+                    Profile #{{getRandomNumber()}}
                   </a>
                 </h6>
                 <p><strong>DOB:</strong> {{ item.dob }} </p>

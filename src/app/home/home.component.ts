@@ -22,8 +22,8 @@ export class HomeComponent {
   candidates: Candidate[] = [];
 
   //login
-  email: string = '';
-  password: string = '';
+  email: string = 'nikita05@gmail.com';
+  password: string = 'nikita05@gmail.com';
 
   //register
   emailId: string = '';

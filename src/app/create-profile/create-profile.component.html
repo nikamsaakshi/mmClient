@@ -1,191 +1,541 @@
-<div id="profileModal" data-bs-backdrop="static" style=" border: 10px;">
-    <div class="modal-dialog modal-lg" style=" border: 10px;">
-        <div class="modal-content">
-            <h4>
-                <div class="centered-container">
-                    <div>Complete Your Profile</div>
-                </div>
-            </h4>
-
-            <div style="width: fit-content; padding: 20px;">
-                <form #profileForm="ngForm" (ngSubmit)="onSaveProfile(profileForm)" class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" required
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="middleName" name="middleName" required
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Last Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" required
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Date of Birth</label>
-                        <input type="date" #dobField="ngModel" class="form-control" [(ngModel)]="DOB" [max]="maxDate"
-                            name="DOB" required>
-                        <div *ngIf="dobField.invalid && (dobField.dirty || dobField.touched)">
-                            <div *ngIf="dobField.errors?.['required']">Date of birth is required.</div>
-                            <div *ngIf="dobField.errors?.['max']">
-                                You must be at least 18 years old.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Gender</label>
-                        <select class="form-select" [(ngModel)]="gender" name="gender" required>
-                            <option value="">Choose...</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Address Line 1</label>
-                        <input type="text" class="form-control" [(ngModel)]="addressLine1" name="addressLine1"
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Address Line 2</label>
-                        <input type="text" class="form-control" [(ngModel)]="addressLine2" name="addressLine2"
-                            maxlength="100">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Taluka</label>
-                        <input type="text" class="form-control" [(ngModel)]="taluka" name="taluka" required
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">District</label>
-                        <input type="text" class="form-control" [(ngModel)]="district" name="district" required
-                            maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Pincode</label>
-                        <input type="text" class="form-control" [(ngModel)]="pincode" name="pincode" required
-                            maxlength="6" pattern="[0-9]{6}">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Village/City</label>
-                        <input type="text" class="form-control" [(ngModel)]="villageOrCity" name="villageOrCity"
-                            required maxlength="100">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Religion</label>
-                        <select class="form-select" [(ngModel)]="religion" name="religion" required>
-                            <option value="">Choose Religion...</option>
-                            <option value="Hindu">Hindu</option>
-                            <option value="Muslim">Muslim</option>
-                            <option value="Christian">Christian</option>
-                            <option value="Sikh">Sikh</option>
-                            <option value="Buddhist">Buddhist</option>
-                            <option value="Jain">Jain</option>
-                            <option value="Parsi">Parsi</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Cast</label>
-                        <select class="form-select" [(ngModel)]="cast" name="cast" required>
-                            <option value="">Choose Caste...</option>
-                            <option value="Brahmin">Brahmin</option>
-                            <option value="Kshatriya">Kshatriya</option>
-                            <option value="Vaishya">Vaishya</option>
-                            <option value="Shudra">Shudra</option>
-                            <option value="Rajput">Rajput</option>
-                            <option value="Maratha">Maratha</option>
-                            <option value="Patel">Patel</option>
-                            <option value="Kayastha">Kayastha</option>
-                            <option value="Nair">Nair</option>
-                            <option value="Jat">Jat</option>
-                            <option value="Yadav">Yadav</option>
-                            <option value="Sindhi">Sindhi</option>
-                            <option value="Baniya">Baniya</option>
-                            <option value="Scheduled Caste">Scheduled Caste</option>
-                            <option value="Scheduled Tribe">Scheduled Tribe</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Sub Cast</label>
-                        <select class="form-select" [(ngModel)]="subCast" name="subCast" required>
-                            <option value="">Choose Sub Caste...</option>
-
-                            <optgroup label="Brahmin">
-                                <option value="Iyer">Iyer</option>
-                                <option value="Iyengar">Iyengar</option>
-                                <option value="Namboodiri">Namboodiri</option>
-                                <option value="Vaidiki">Vaidiki</option>
-                                <option value="Kanyakubja">Kanyakubja</option>
-                                <option value="Saraswat">Saraswat</option>
-                                <option value="Kashmiri Brahmin">Kashmiri Brahmin</option>
-                                <option value="Madhwa">Madhwa</option>
-                            </optgroup>
-
-                            <optgroup label="Kshatriya">
-                                <option value="Rajput - Chauhan">Rajput - Chauhan</option>
-                                <option value="Rajput - Rathore">Rajput - Rathore</option>
-                                <option value="Rajput - Sisodia">Rajput - Sisodia</option>
-                                <option value="Maratha">Maratha</option>
-                                <option value="Jat">Jat</option>
-                            </optgroup>
-
-                            <optgroup label="Vaishya">
-                                <option value="Agarwal">Agarwal</option>
-                                <option value="Maheshwari">Maheshwari</option>
-                                <option value="Oswal">Oswal</option>
-                                <option value="Jaiswal">Jaiswal</option>
-                                <option value="Khandelwal">Khandelwal</option>
-                            </optgroup>
-
-                            <optgroup label="Other Communities">
-                                <option value="Other">Other</option>
-                            </optgroup>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label">Height</label>
-                        <input type="number" class="form-control" [(ngModel)]="height" name="height" required min="1">
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label">Weight</label>
-                        <input type="text" class="form-control" [(ngModel)]="weight" name="weight" maxlength="50">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Complexion</label>
-                        <select class="form-select" [(ngModel)]="complexion" name="complexion" required>
-                            <option value="">Choose...</option>
-                            <option value="Fair">Fair</option>
-                            <option value="Light">Light</option>
-                            <option value="Medium">Medium</option>
-                            <option value="Dark">Dark</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Photo</label>
-                        <input type="file" (change)="onPhotoSelected($event)" required>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Biodata</label>
-                        <input type="file" (change)="onBiodataSelected($event)" required>
-                    </div>
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-primary w-100">Save Profile</button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" (click)="onCancel()" class="btn btn-secondary w-100">Cancel</button>
-                    </div>
-                </form>
-            </div>
+<div id="profileModal" data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <h4>
+        <div class="centered-container">
+          <div>Complete Your Profile</div>
         </div>
+      </h4>
+      <div style="width: fit-content; padding: 20px;">
+        <form #profileForm="ngForm" (ngSubmit)="onSaveProfile(profileForm)" class="row g-3">
+          <!-- Existing Fields -->
+          <div class="col-md-4">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Middle Name</label>
+            <input type="text" class="form-control" [(ngModel)]="middleName" name="middleName" required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" #dobField="ngModel" class="form-control" [(ngModel)]="DOB" [max]="maxDate" name="DOB"
+              required>
+            <div *ngIf="dobField.invalid && (dobField.dirty || dobField.touched)">
+              <div *ngIf="dobField.errors?.['required']">Date of birth is required.</div>
+              <div *ngIf="dobField.errors?.['max']">You must be at least 18 years old.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Gender</label>
+            <select class="form-select" [(ngModel)]="gender" name="gender" required>
+              <option value="">Choose...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Address Line 1</label>
+            <input type="text" class="form-control" [(ngModel)]="addressLine1" name="addressLine1" maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Address Line 2</label>
+            <input type="text" class="form-control" [(ngModel)]="addressLine2" name="addressLine2" maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Taluka</label>
+            <select class="form-select" [(ngModel)]="taluka" name="taluka" required>
+              <option value="">Choose...</option>
+
+              <optgroup label="Maharashtra">
+                <!-- Pune District -->
+                <option value="Haveli">Haveli</option>
+                <option value="Mulshi">Mulshi</option>
+                <option value="Baramati">Baramati</option>
+                <option value="Daund">Daund</option>
+                <option value="Bhor">Bhor</option>
+                <option value="Junnar">Junnar</option>
+                <option value="Shirur">Shirur</option>
+                <option value="Indapur">Indapur</option>
+
+                <!-- Mumbai Suburban District -->
+                <option value="Andheri">Andheri</option>
+                <option value="Borivali">Borivali</option>
+                <option value="Kurla">Kurla</option>
+                <option value="Dahisar">Dahisar</option>
+
+                <!-- Nashik District -->
+                <option value="Nashik">Nashik</option>
+                <option value="Igatpuri">Igatpuri</option>
+                <option value="Sinnar">Sinnar</option>
+                <option value="Dindori">Dindori</option>
+                <option value="Malegaon">Malegaon</option>
+
+                <!-- Kolhapur District -->
+                <option value="Karveer">Karveer</option>
+                <option value="Panhala">Panhala</option>
+                <option value="Gadhinglaj">Gadhinglaj</option>
+                <option value="Shirol">Shirol</option>
+
+                <!-- Satara District -->
+                <option value="Satara">Satara</option>
+                <option value="Wai">Wai</option>
+                <option value="Patan">Patan</option>
+                <option value="Mahabaleshwar">Mahabaleshwar</option>
+
+                <!-- Solapur District -->
+                <option value="Solapur North">Solapur North</option>
+                <option value="Solapur South">Solapur South</option>
+                <option value="Akkalkot">Akkalkot</option>
+                <option value="Mohol">Mohol</option>
+                <option value="Pandharpur">Pandharpur</option>
+
+                <!-- Aurangabad District -->
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Kannad">Kannad</option>
+                <option value="Paithan">Paithan</option>
+                <option value="Sillod">Sillod</option>
+
+                <!-- Other Districts -->
+                <option value="Amravati">Amravati</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Chandrapur">Chandrapur</option>
+                <option value="Bhandara">Bhandara</option>
+                <option value="Wardha">Wardha</option>
+                <option value="Yavatmal">Yavatmal</option>
+                <option value="Latur">Latur</option>
+                <option value="Osmanabad">Osmanabad</option>
+                <option value="Beed">Beed</option>
+                <option value="Parbhani">Parbhani</option>
+                <option value="Nanded">Nanded</option>
+              </optgroup>
+
+              <optgroup label="Gujarat">
+                <option value="Daskroi">Daskroi</option>
+                <option value="Sanand">Sanand</option>
+                <option value="Viramgam">Viramgam</option>
+              </optgroup>
+
+              <optgroup label="Karnataka">
+                <option value="Anekal">Anekal</option>
+                <option value="Yelahanka">Yelahanka</option>
+                <option value="Nelamangala">Nelamangala</option>
+              </optgroup>
+
+              <optgroup label="Tamil Nadu">
+                <option value="Ambattur">Ambattur</option>
+                <option value="Velachery">Velachery</option>
+                <option value="Pollachi">Pollachi</option>
+              </optgroup>
+
+              <optgroup label="Uttar Pradesh">
+                <option value="Malihabad">Malihabad</option>
+                <option value="Mohanlalganj">Mohanlalganj</option>
+              </optgroup>
+
+              <optgroup label="Rajasthan">
+                <option value="Sanganer">Sanganer</option>
+                <option value="Amer">Amer</option>
+              </optgroup>
+
+              <optgroup label="Other">
+                <option value="Other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+
+
+          <div class="col-md-4">
+            <label class="form-label">District</label>
+            <select class="form-select" [(ngModel)]="district" name="district" required>
+              <option value="">Choose...</option>
+
+              <optgroup label="Andhra Pradesh">
+                <option value="Anantapur">Anantapur</option>
+                <option value="Chittoor">Chittoor</option>
+                <option value="East Godavari">East Godavari</option>
+                <option value="Guntur">Guntur</option>
+                <option value="Krishna">Krishna</option>
+                <option value="Kurnool">Kurnool</option>
+                <option value="Nellore">Nellore</option>
+                <option value="Prakasam">Prakasam</option>
+                <option value="Srikakulam">Srikakulam</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+                <option value="Vizianagaram">Vizianagaram</option>
+                <option value="West Godavari">West Godavari</option>
+                <option value="YSR Kadapa">YSR Kadapa</option>
+              </optgroup>
+
+              <optgroup label="Arunachal Pradesh">
+                <option value="Tawang">Tawang</option>
+                <option value="West Kameng">West Kameng</option>
+                <option value="East Kameng">East Kameng</option>
+                <option value="Papum Pare">Papum Pare</option>
+                <option value="Kurung Kumey">Kurung Kumey</option>
+                <option value="Upper Subansiri">Upper Subansiri</option>
+              </optgroup>
+
+              <optgroup label="Assam">
+                <option value="Baksa">Baksa</option>
+                <option value="Barpeta">Barpeta</option>
+                <option value="Biswanath">Biswanath</option>
+                <option value="Bongaigaon">Bongaigaon</option>
+                <option value="Cachar">Cachar</option>
+                <option value="Charaideo">Charaideo</option>
+                <option value="Darrang">Darrang</option>
+                <option value="Dhemaji">Dhemaji</option>
+                <option value="Dhubri">Dhubri</option>
+                <option value="Dibrugarh">Dibrugarh</option>
+                <option value="Goalpara">Goalpara</option>
+                <option value="Golaghat">Golaghat</option>
+                <option value="Hailakandi">Hailakandi</option>
+              </optgroup>
+
+              <optgroup label="Bihar">
+                <option value="Araria">Araria</option>
+                <option value="Arwal">Arwal</option>
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Banka">Banka</option>
+                <option value="Begusarai">Begusarai</option>
+                <option value="Bhagalpur">Bhagalpur</option>
+                <option value="Buxar">Buxar</option>
+                <option value="Darbhanga">Darbhanga</option>
+                <option value="Gaya">Gaya</option>
+                <option value="Jamui">Jamui</option>
+              </optgroup>
+
+              <optgroup label="Chhattisgarh">
+                <option value="Balod">Balod</option>
+                <option value="Baloda Bazar">Baloda Bazar</option>
+                <option value="Bastar">Bastar</option>
+                <option value="Bilaspur">Bilaspur</option>
+                <option value="Dantewada">Dantewada</option>
+                <option value="Durg">Durg</option>
+                <option value="Janjgir-Champa">Janjgir-Champa</option>
+              </optgroup>
+
+              <optgroup label="Delhi">
+                <option value="Central Delhi">Central Delhi</option>
+                <option value="East Delhi">East Delhi</option>
+                <option value="New Delhi">New Delhi</option>
+                <option value="North Delhi">North Delhi</option>
+                <option value="South Delhi">South Delhi</option>
+                <option value="West Delhi">West Delhi</option>
+              </optgroup>
+
+              <optgroup label="Gujarat">
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Amreli">Amreli</option>
+                <option value="Anand">Anand</option>
+                <option value="Banaskantha">Banaskantha</option>
+                <option value="Bharuch">Bharuch</option>
+                <option value="Bhavnagar">Bhavnagar</option>
+                <option value="Jamnagar">Jamnagar</option>
+                <option value="Junagadh">Junagadh</option>
+                <option value="Kutch">Kutch</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Surat">Surat</option>
+                <option value="Vadodara">Vadodara</option>
+              </optgroup>
+
+              <optgroup label="Maharashtra">
+                <option value="Ahmednagar">Ahmednagar</option>
+                <option value="Akola">Akola</option>
+                <option value="Amravati">Amravati</option>
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Beed">Beed</option>
+                <option value="Bhandara">Bhandara</option>
+                <option value="Chandrapur">Chandrapur</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Pune">Pune</option>
+                <option value="Ratnagiri">Ratnagiri</option>
+                <option value="Sangli">Sangli</option>
+                <option value="Satara">Satara</option>
+                <option value="Solapur">Solapur</option>
+                <option value="Thane">Thane</option>
+                <option value="Wardha">Wardha</option>
+                <option value="Yavatmal">Yavatmal</option>
+              </optgroup>
+
+              <optgroup label="Tamil Nadu">
+                <option value="Chennai">Chennai</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Erode">Erode</option>
+                <option value="Madurai">Madurai</option>
+                <option value="Salem">Salem</option>
+                <option value="Thanjavur">Thanjavur</option>
+                <option value="Tiruchirapalli">Tiruchirapalli</option>
+                <option value="Tirunelveli">Tirunelveli</option>
+                <option value="Vellore">Vellore</option>
+              </optgroup>
+
+              <optgroup label="West Bengal">
+                <option value="Alipurduar">Alipurduar</option>
+                <option value="Bankura">Bankura</option>
+                <option value="Birbhum">Birbhum</option>
+                <option value="Darjeeling">Darjeeling</option>
+                <option value="Howrah">Howrah</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Malda">Malda</option>
+                <option value="Midnapore">Midnapore</option>
+                <option value="Murshidabad">Murshidabad</option>
+              </optgroup>
+
+              <optgroup label="Other">
+                <option value="Other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Pincode</label>
+            <input type="text" class="form-control" [(ngModel)]="pincode" name="pincode" required maxlength="6"
+              pattern="[0-9]{6}">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Village/City</label>
+            <input type="text" class="form-control" [(ngModel)]="villageOrCity" name="villageOrCity" required
+              maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Religion</label>
+            <select class="form-select" [(ngModel)]="religion" name="religion" required>
+              <option value="">Choose...</option>
+              <option value="Hindu">Hindu</option>
+              <option value="Muslim">Muslim</option>
+              <option value="Christian">Christian</option>
+              <option value="Sikh">Sikh</option>
+              <option value="Buddhist">Buddhist</option>
+              <option value="Jain">Jain</option>
+              <option value="Parsi">Parsi</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Cast</label>
+            <select class="form-select" [(ngModel)]="cast" name="cast" required>
+              <option value="">Choose...</option>
+              <option value="Brahmin">Brahmin</option>
+              <option value="Kshatriya">Kshatriya</option>
+              <option value="Vaishya">Vaishya</option>
+              <option value="Shudra">Shudra</option>
+              <option value="Rajput">Rajput</option>
+              <option value="Maratha">Maratha</option>
+              <option value="Patel">Patel</option>
+              <option value="Kayastha">Kayastha</option>
+              <option value="Nair">Nair</option>
+              <option value="Jat">Jat</option>
+              <option value="Yadav">Yadav</option>
+              <option value="Sindhi">Sindhi</option>
+              <option value="Baniya">Baniya</option>
+              <option value="Scheduled Caste">Scheduled Caste</option>
+              <option value="Scheduled Tribe">Scheduled Tribe</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Sub Cast</label>
+            <select class="form-select" [(ngModel)]="subCast" name="subCast" required>
+              <option value="">Choose...</option>
+              <optgroup label="Brahmin">
+                <option value="Iyer">Iyer</option>
+                <option value="Iyengar">Iyengar</option>
+                <option value="Namboodiri">Namboodiri</option>
+                <option value="Vaidiki">Vaidiki</option>
+                <option value="Kanyakubja">Kanyakubja</option>
+                <option value="Saraswat">Saraswat</option>
+                <option value="Kashmiri Brahmin">Kashmiri Brahmin</option>
+                <option value="Madhwa">Madhwa</option>
+              </optgroup>
+              <optgroup label="Kshatriya">
+                <option value="Rajput - Chauhan">Rajput - Chauhan</option>
+                <option value="Rajput - Rathore">Rajput - Rathore</option>
+                <option value="Rajput - Sisodia">Rajput - Sisodia</option>
+                <option value="Maratha">Maratha</option>
+                <option value="Jat">Jat</option>
+              </optgroup>
+              <optgroup label="Vaishya">
+                <option value="Agarwal">Agarwal</option>
+                <option value="Maheshwari">Maheshwari</option>
+                <option value="Oswal">Oswal</option>
+                <option value="Jaiswal">Jaiswal</option>
+                <option value="Khandelwal">Khandelwal</option>
+              </optgroup>
+              <optgroup label="Other Communities">
+                <option value="Other">Other</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Family Deity</label>
+            <input type="text" class="form-control" [(ngModel)]="familyDeity" name="familyDeity" required
+              maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Deity Representation</label>
+            <input type="text" class="form-control" [(ngModel)]="deityRepresentation" name="deityRepresentation"
+              required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Constellation</label>
+            <select class="form-select" [(ngModel)]="constellation" name="constellation" required>
+              <option value="">Choose...</option>
+
+              <optgroup label="Ashwini to Ardra">
+                <option value="Ashwini">Ashwini</option>
+                <option value="Bharani">Bharani</option>
+                <option value="Krittika">Krittika</option>
+                <option value="Rohini">Rohini</option>
+                <option value="Mrigashira">Mrigashira</option>
+                <option value="Ardra">Ardra</option>
+              </optgroup>
+
+              <optgroup label="Punarvasu to Hasta">
+                <option value="Punarvasu">Punarvasu</option>
+                <option value="Pushya">Pushya</option>
+                <option value="Ashlesha">Ashlesha</option>
+                <option value="Magha">Magha</option>
+                <option value="Purva Phalguni">Purva Phalguni</option>
+                <option value="Uttara Phalguni">Uttara Phalguni</option>
+                <option value="Hasta">Hasta</option>
+              </optgroup>
+
+              <optgroup label="Chitra to Jyeshtha">
+                <option value="Chitra">Chitra</option>
+                <option value="Swati">Swati</option>
+                <option value="Vishakha">Vishakha</option>
+                <option value="Anuradha">Anuradha</option>
+                <option value="Jyeshtha">Jyeshtha</option>
+              </optgroup>
+
+              <optgroup label="Mula to Revati">
+                <option value="Mula">Mula</option>
+                <option value="Purva Ashadha">Purva Ashadha</option>
+                <option value="Uttara Ashadha">Uttara Ashadha</option>
+                <option value="Shravana">Shravana</option>
+                <option value="Dhanishta">Dhanishta</option>
+                <option value="Shatabhisha">Shatabhisha</option>
+                <option value="Purva Bhadrapada">Purva Bhadrapada</option>
+                <option value="Uttara Bhadrapada">Uttara Bhadrapada</option>
+                <option value="Revati">Revati</option>
+              </optgroup>
+
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Zodiac Sign</label>
+            <select class="form-select" [(ngModel)]="zodiacSign" name="zodiacSign" required>
+              <option value="">Choose...</option>
+              <option value="Aries">♈ Aries (Mesh)</option>
+              <option value="Taurus">♉ Taurus (Vrishabha)</option>
+              <option value="Gemini">♊ Gemini (Mithun)</option>
+              <option value="Cancer">♋ Cancer (Karka)</option>
+              <option value="Leo">♌ Leo (Simha)</option>
+              <option value="Virgo">♍ Virgo (Kanya)</option>
+              <option value="Libra">♎ Libra (Tula)</option>
+              <option value="Scorpio">♏ Scorpio (Vrishchika)</option>
+              <option value="Sagittarius">♐ Sagittarius (Dhanu)</option>
+              <option value="Capricorn">♑ Capricorn (Makara)</option>
+              <option value="Aquarius">♒ Aquarius (Kumbha)</option>
+              <option value="Pisces">♓ Pisces (Meena)</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Category</label>
+            <select class="form-select" [(ngModel)]="category" name="category" required>
+              <option value="">Choose Gana...</option>
+              <option value="Deva">Deva (Divine)</option>
+              <option value="Manushya">Manushya (Human)</option>
+              <option value="Rakshasa">Rakshasa (Demon)</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Pulse</label>
+            <select class="form-select" [(ngModel)]="pulse" name="Pulse" required>
+              <option value="">Choose...</option>
+              <option value="Adi Nadi"> First Pulse</option>
+              <option value="Madhya Nadi">Middle Pulse</option>
+              <option value="Antya Nadi"> Last Pulse</option>
+          </select>
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Height</label>
+            <input type="number" class="form-control" [(ngModel)]="height" name="height" required min="1">
+          </div>
+          <div class="col-md-2">
+            <label class="form-label">Weight</label>
+            <input type="text" class="form-control" [(ngModel)]="weight" name="weight" maxlength="50">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Complexion</label>
+            <select class="form-select" [(ngModel)]="complexion" name="complexion" required>
+              <option value="">Choose...</option>
+              <option value="Fair">Fair</option>
+              <option value="Light">Light</option>
+              <option value="Medium">Medium</option>
+              <option value="Dark">Dark</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Blood Group</label>
+            <select class="form-select" [(ngModel)]="bloodGroup" name="bloodGroup" required>
+              <option value="">Choose...</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Education</label>
+            <input type="text" class="form-control" [(ngModel)]="education" name="education" required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Profession</label>
+            <input type="text" class="form-control" [(ngModel)]="profession" name="profession" required maxlength="100">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Annual Income</label>
+            <input type="number" class="form-control" [(ngModel)]="annualIncome" name="annualIncome" required min="1">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Property/Land/Home/Flat</label>
+            <input type="text" class="form-control" [(ngModel)]="property" name="property" required maxlength="100">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Family Background</label>
+            <textarea class="form-control" [(ngModel)]="familyBackground" name="familyBackground" required
+              rows="3"></textarea>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Photo</label>
+            <input type="file" (change)="onPhotoSelected($event)" required>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Biodata</label>
+            <input type="file" (change)="onBiodataSelected($event)" required>
+          </div>
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary w-100">Save Profile</button>
+          </div>
+          <div class="col-6">
+            <button type="button" (click)="onCancel()" class="btn btn-secondary w-100">Cancel</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </div>

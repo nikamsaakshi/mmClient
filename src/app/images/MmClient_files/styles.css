@@ -1,0 +1,142 @@
+/* src/styles.css */
+:root {
+  --primary: #0d6efd;
+  --primary-foreground: #ffffff;
+  --secondary: #6c757d;
+  --secondary-foreground: #ffffff;
+  --accent: #e9ecef;
+  --accent-foreground: #212529;
+  --background: #ffffff;
+  --foreground: #212529;
+  --card: #ffffff;
+  --card-foreground: #212529;
+  --popover: #ffffff;
+  --popover-foreground: #212529;
+  --muted: #6c757d;
+  --muted-foreground: #ffffff;
+  --destructive: #dc3545;
+  --destructive-foreground: #ffffff;
+  --border: #dee2e6;
+  --input: #dee2e6;
+  --ring: #0d6efd;
+  --radius: 0.5rem;
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+  padding-top: 76px;
+}
+.navbar {
+  box-shadow: var(--shadow);
+}
+.hero {
+  background-color: var(--background);
+  padding: 80px 0;
+}
+.card {
+  transition: transform 0.3s ease;
+  border-radius: var(--radius);
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.btn {
+  border-radius: var(--radius);
+  padding: 0.75rem 1.5rem;
+}
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+}
+.btn-outline-primary {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.modal-content {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.modal-body {
+  padding: 2rem;
+}
+.form-label {
+  font-weight: 500;
+  color: var(--foreground);
+}
+.form-control,
+.form-select {
+  border-color: var(--border);
+  padding: 0.75rem 1rem;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+#testimonials .card img {
+  height: 200px;
+  object-fit: cover;
+}
+footer a:hover {
+  color: var(--primary) !important;
+  text-decoration: none;
+}
+section {
+  scroll-margin-top: 76px;
+}
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+    padding: 40px 0;
+  }
+  .hero .btn {
+    margin-bottom: 1rem;
+  }
+}
+.modal-lg .modal-body {
+  padding: 2rem;
+}
+.modal-lg .form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.modal-lg .form-control,
+.modal-lg .form-select {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+}
+.success-story-card {
+  overflow: hidden;
+}
+.success-story-card img {
+  transition: transform 0.3s ease;
+}
+.success-story-card:hover img {
+  transform: scale(1.1);
+}
+.contact-info {
+  background: var(--accent);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.contact-form .form-control {
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+/* angular:styles/global:styles */
+/*# sourceMappingURL=styles.css.map */
