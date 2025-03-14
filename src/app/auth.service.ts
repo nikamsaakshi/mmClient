@@ -135,6 +135,10 @@ export class AuthService {
       catchError(() => of(false))
     );
   }
+
+  getMarriedCouples(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/getMarriedCouples`);
+  }
 }
 
 export interface PaymentRequest1 {
