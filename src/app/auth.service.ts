@@ -33,6 +33,22 @@ export class AuthService {
     }
   }
 
+  getSentInterestMatchingProfilesByCandidateId(candidateId: string): Observable<any> {
+    try {
+      return this.http.get(`${this.baseUrl}/getSentInterestMatchingProfilesByCandidateId/` + candidateId);
+    } catch (error) {
+      return of(error);
+    }
+  }
+
+  isProfileExists(candidateId: string): Observable<any> {
+    try {
+      return this.http.get(`${this.baseUrl}/isProfileExists/` + candidateId);
+    } catch (error) {
+      return of(error);
+    }
+  }
+
   getCandidateProfileByCandidateId(candidateId: number): Observable<any> {
     try {
       return this.http.get(`${this.baseUrl}/getCandidateProfileByCandidateId/` + candidateId);
@@ -94,6 +110,25 @@ export class AuthService {
       candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
     }
     return this.http.post(`${this.baseUrl}/updatePremium/` + candidateId).pipe(
+      map((response: any) => {
+        return !!response;
+      }),
+      catchError(() => of(false))
+    );
+  }
+
+  sendIneterest(interestedCandidateId: number): Observable<boolean> {
+    let candidateId = '';
+    if (localStorage?.getItem('candidateId')) {
+      candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
+    }
+
+    const body = {
+      interestedCandidateId: interestedCandidateId,
+      candidateId: candidateId
+    }
+    alert(body.candidateId + " and " + body.interestedCandidateId);
+    return this.http.post(`${this.baseUrl}/saveCandidateinterest`, body).pipe(
       map((response: any) => {
         return !!response;
       }),

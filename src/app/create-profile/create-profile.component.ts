@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class CreateProfileComponent implements OnInit, AfterViewInit {
   dob: string = '';
   maxDate!: string;
+  
   onFileSelected($event: Event) {
     throw new Error('Method not implemented.');
   }
@@ -37,13 +38,25 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
   religion: string = '';
   cast: string = '';
   subCast: string = '';
+  familyDeity: string= '';
+  deityRepresentation: string = '';
+  constellation: string = '';
+  zodiacSign: string = '';
+  category: string = '';
+  pulse: string = '';
   height: number = 0;
   weight: number = 0;
   complexion: string = '';
-  candidateId: number = 0;
+  bloodGroup:string = '';
+  education:string = '';
+  profession: string='';
+  annualIncome:string = '';
+  property:string = '';
+  familyBackground:string = '';
   photo: string = '';
   bioData: string = '';
   imagetobruploaded: FormData = new FormData();
+  candidateId: number = 0;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -68,22 +81,35 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
         console.log(response);
         this.candidateId = Number(candidateId);
         this.firstName = response.firstName;
-        this.lastName = response.lastName;
-        this.pincode = response.pincode;
-        this.DOB = response.dob;
         this.middleName = response.middleName;
+        this.lastName = response.lastName;
+        this.DOB = response.dob;
+        this.gender = response.gender;
         this.addressLine1 = response.addressLine1;
         this.addressLine2 = response.addressLine2;
-        this.cast = response.cast;
-        this.subCast = response.subCast;
-        this.complexion = response.complexion;
-        this.gender = response.gender;
-        this.height = response.height;
-        this.weight = response.weight;
-        this.district = response.district;
         this.taluka = response.taluka;
+        this.district = response.district;
+        this.pincode = response.pincode;
         this.villageOrCity = response.villageOrCity;
         this.religion = response.religion;
+        this.cast = response.cast;
+        this.subCast = response.subCast;
+        this.familyDeity = response.familyDeity;
+        this.deityRepresentation = response.deityRepresentation;
+        this.constellation = response.constellation;
+        this.zodiacSign = response.zodiacSign;
+        this.category = response.caetgory;
+        this.pulse = response.pulse;
+        this.height = response.height;
+        this.weight = response.weight;
+        this.complexion = response.complexion;
+        this.bloodGroup = response.bloodGroup;
+        this.education = response.education;
+        this.profession = response.profession;
+        this.annualIncome = response.annualIncome;
+        this.property = response.property;
+        this.familyBackground = response.familyBackground;
+
       });
     } else {
       alert("Please login!");
@@ -116,9 +142,23 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
     imagemDocData.append('religion', this.religion);
     imagemDocData.append('cast', this.cast);
     imagemDocData.append('subcast', this.subCast);
+    imagemDocData.append('familyDeity',this.familyDeity);
+    imagemDocData.append('deityRepresentation',this.deityRepresentation);
+    imagemDocData.append('constellation',this.constellation);
+    imagemDocData.append('zodiacSign',this.zodiacSign);
+    imagemDocData.append('category',this.category);
+    imagemDocData.append('pulse',this.pulse);
     imagemDocData.append('height', this.height.toString());
     imagemDocData.append('weight', this.weight.toString());
     imagemDocData.append('complexion', this.complexion);
+    imagemDocData.append('bloodGroup',this.bloodGroup);
+    imagemDocData.append('education', this.education);
+    imagemDocData.append('profession',this.profession)
+    imagemDocData.append('annualIncome',this.annualIncome);
+    imagemDocData.append('property',this.property);
+    imagemDocData.append('familyBackground',this.familyBackground);
+
+
     if (form.valid) {
       this.authService.saveProfile(
         imagemDocData

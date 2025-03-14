@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 
+
+
 @Component({
   selector: 'app-candidate-details-dialog',
   standalone: true,
@@ -11,28 +13,31 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './candidate-details-dialog.component.css'
 })
 export class CandidateDetailsDialogComponent implements OnInit {
-  
+
+
   @Input() candidateId!: number;
   @Output() closeDialog = new EventEmitter<void>();
   candidate: any;
-
-  constructor(private candidateService: AuthService) { }
+  age: number = 0;
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-   
-    this.candidateService.getCandidateProfileByCandidateId(this.candidateId).subscribe({
+    this.authService.getCandidateProfileByCandidateId(this.candidateId).subscribe({
       next: (data) => this.candidate = data,
       error: (err) => alert(err)
+      
     });
-
-    alert(this.candidate.candidateId);
+    let timeDiff = Math.abs(Date.now() - this.candidate.DOB.getTime());
+    this.age = 38;
+    alert(this.age);
   }
 
   onClose(): void {
     this.closeDialog.emit();
   }
 
-  onSendInterest() {
+  onSendInterest(candidateId: number) {
+    this.authService.sendIneterest(candidateId).subscribe(() => { });
     alert('Interset Sent Successfully!!');
     this.closeDialog.emit();
   }

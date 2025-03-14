@@ -39,4 +39,5 @@ export class CandidateProfileWithPhotos {
   maskedContactNumber!: string;
   age!: string;
   isPremium!: boolean;
+  isAccepted!: boolean;
 }

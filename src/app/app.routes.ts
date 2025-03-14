@@ -9,6 +9,7 @@ import { CreateProfileComponent } from './create-profile/create-profile.componen
 import { authGuard } from './auth.guard';
 import { CandidateDetailsDialogComponent } from './candidate-details-dialog/candidate-details-dialog.component';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { SentRecComponent } from './sent-rec/sent-rec.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,4 +21,5 @@ export const routes: Routes = [
   { path: 'create-profile', component: CreateProfileComponent, canActivate:[authGuard]},
   { path: 'app-candidate-details-dialog', component: CandidateDetailsDialogComponent},
   { path: 'app-payment-form', component: PaymentFormComponent, canActivate:[authGuard]},
+  { path: 'sent-rec', component: SentRecComponent, canActivate:[authGuard]}
 ];

@@ -9,11 +9,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-
-                <!-- <li (click)="navigateTo('')">Home</li>
-                <li (click)="navigateTo('login')">Login</li>
-                <li (click)="navigateTo('details')">Details</li> -->
-
                 <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('home')">Home</a>
                 </li>
@@ -21,31 +16,34 @@
                     <a class="nav-link" (click)="navigateTo('features')">Features</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="navigateTo('app-payment-form')">Payment</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('success-stories')">Success Stories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="navigateTo('contact-us')">Contact Us</a>
+                    <a class="nav-link" (click)="navigateTo('create-profile')">Complete Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('matching-profiles')">Matching Profiles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="navigateTo('create-profile')">Complete Profile</a>
+                    <a class="nav-link" (click)="navigateTo('sent-rec')">Sent & Received</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link" (click)="navigateTo('app-payment-form')">Payment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="navigateTo('contact-us')">Contact Us</a>
+                </li>
                 <li class="nav-item">
                     <button *ngIf="!isLogin()" class="btn btn-primary ms-3" data-bs-toggle="modal"
                         data-bs-target="#loginModal">Login</button>
-
-                        <button *ngIf="isLogin()" (click)="logOut()" class="btn btn-primary ms-3"
-                        >Logout</button>
+                    <button *ngIf="isLogin()" (click)="logOut()" class="btn btn-primary ms-auto">
+                        <fa-icon [icon]="faUser"></fa-icon>
+                        &nbsp;&nbsp;
+                        <strong><small>{{getUserName()}}</small></strong>
+                        &nbsp;&nbsp;
+                        <fa-icon [icon]="faLogout"></fa-icon>
+                    </button>
                 </li>
-                <!-- <li>
-                    <button class="btn btn-primary ms-3" (click)="openLoginModal()">Login New</button>
-                </li> -->
             </ul>
         </div>
     </div>
