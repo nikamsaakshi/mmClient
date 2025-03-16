@@ -38,6 +38,8 @@ export class NavComponent {
     localStorage.removeItem('token');
     localStorage.removeItem('candidateId');
     localStorage.removeItem('candidateEmail');
+    localStorage.removeItem('isPremium');
+    localStorage.removeItem('gender');
     this.router.navigate(['home']);
   }
 
@@ -46,7 +48,7 @@ export class NavComponent {
     if (localStorage?.getItem('candidateEmail')) {
       candidateEmail = localStorage?.getItem('candidateEmail')?.toString() || 'User';
     }
-    candidateEmail = candidateEmail.substring(0, 5).toString();
+    candidateEmail = candidateEmail.substring(0, 3).toString();
     return candidateEmail;
   }
 }

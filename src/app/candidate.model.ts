@@ -40,4 +40,6 @@ export class CandidateProfileWithPhotos {
   age!: string;
   isPremium!: boolean;
   isAccepted!: boolean;
+  isRejected!: boolean;
+  interestedCandidateId!: number;
 }

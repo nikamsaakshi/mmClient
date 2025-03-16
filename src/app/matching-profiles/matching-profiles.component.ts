@@ -26,6 +26,11 @@ export class MatchingProfilesComponent {
     if (localStorage?.getItem('candidateId')) {
       candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
     }
+
+    let gender = '';
+    if (localStorage?.getItem('gender')) {
+      gender = localStorage?.getItem('gender')?.toString() || '';
+    }
     let candidate = new Candidate;
     this.authService.isProfileExists(candidateId).subscribe((response) => {
       candidate = response;
@@ -38,11 +43,6 @@ export class MatchingProfilesComponent {
 
     if (localStorage?.getItem('isPremium') == '1') {
       this.isPremium = true;
-    }
-
-    let gender = '';
-    if (candidate != null) {
-      gender = candidate.gender;
     }
     this.getMatchingProfilesByGender(gender);
   }

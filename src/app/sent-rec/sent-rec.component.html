@@ -10,11 +10,10 @@
 <body>
     <div class="container">
         <h2>Sent & Received Interests</h2>
-
         <!-- Sent Interests -->
         <div class="section">
             <h3>Sent Interests</h3>
-            <div class="interests-list" *ngFor="let item of candidates" >
+            <div class="interests-list" *ngFor="let item of candidates">
                 <div class="interest-card" id="sent-interest-1">
                     <img [src]="item.photoPath" [alt]="item.firstName">
                     <div class="details">
@@ -22,75 +21,39 @@
                         <p><strong>Age:</strong> {{ item.age }}</p>
                         <p><strong>DOB:</strong> {{ item.dob }} </p>
                         <p><strong>Contact:</strong> {{ item.maskedContactNumber }}</p>
-                        <p *ngIf="!item.isAccepted"><strong>Status:</strong> <span class="status pending">Pending</span></p>
-                        <p *ngIf="item.isAccepted"><strong>Status:</strong> <span class="status accepted">Accepted</span></p>
+                        <p *ngIf="!item.isAccepted"><strong>Status:</strong> <span class="status pending">Pending</span>
+                        </p>
+                        <p *ngIf="item.isAccepted"><strong>Status:</strong> <span
+                                class="status accepted">Accepted</span></p>
                     </div>
                 </div>
             </div>
-
-            <!-- <div class="row g-4" *ngIf="candidates">
-                <div *ngFor="let item of candidates" class="col-md-6">
-                    <div class="card border-0 shadow-sm" style="background-color: azure;">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4 d-flex align-items-center">
-                                    <img [src]="item.photoPath" [alt]="item.firstName" class="img-thumbnail w-100">
-                                </div>
-                                <div class="col-md-8">
-                                    <h6>
-                                        <a href="#">
-                                            Profile #{{item.candidateId}}
-                                        </a>
-                                    </h6>
-                                    <p><strong>DOB:</strong> {{ item.dob }} </p>
-                                    <p><strong>Age:</strong> {{ item.age }} </p>
-                                    <p><strong>Village/City:</strong> {{ item.villageOrCity }}</p>
-                                    <p><strong>District:</strong> {{ item.district }}</p>
-                                    <p><strong>Contact:</strong> {{ item.maskedContactNumber }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
 
         <!-- Received Interests -->
         <div class="section">
             <h3>Received Interests</h3>
-            <div class="interests-list">
+            <div class="interests-list" *ngFor="let item of candidatesReceived">
                 <div class="interest-card" id="received-interest-1">
-                    <img src="assets/sample-image.jpg" alt="Candidate Image">
+                    <img [src]="item.photoPath" [alt]="item.firstName">
                     <div class="details">
-                        <p><strong>Name:</strong> Alex Johnson</p>
-                        <p><strong>Age:</strong> 30</p>
+                        <p><strong>Name:</strong> {{item.firstName}}&nbsp;{{item.lastName}}</p>
+                        <p><strong>Age:</strong> {{ item.age }}</p>
+                        <p><strong>DOB:</strong> {{ item.dob }} </p>
                         <p><strong>Religion:</strong> Muslim</p>
                         <p><strong>Profession:</strong> Businessman</p>
+                        <p><strong>Contact:</strong> {{ item.maskedContactNumber }}</p>
                         <div class="actions">
-                            <button class="btn accept" onclick="acceptInterest('received-interest-1')">Accept</button>
-                            <button class="btn reject" onclick="rejectInterest('received-interest-1')">Reject</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="interest-card" id="received-interest-2">
-                    <img src="assets/sample-image.jpg" alt="Candidate Image">
-                    <div class="details">
-                        <p><strong>Name:</strong> Emily Brown</p>
-                        <p><strong>Age:</strong> 27</p>
-                        <p><strong>Religion:</strong> Sikh</p>
-                        <p><strong>Profession:</strong> Teacher</p>
-                        <div class="actions">
-                            <button class="btn accept" onclick="acceptInterest('received-interest-2')">Accept</button>
-                            <button class="btn reject" onclick="rejectInterest('received-interest-2')">Reject</button>
+                            <button class="btn accept" [hidden]="!item?.isAccepted == true">Accepted</button> {{item.interestedCandidateId}}
+                            <button class="btn accept" [hidden]="item?.isAccepted == true" onclick="acceptInterest(item.interestedCandidateId)">Accept</button>
+                            <button class="btn reject" [hidden]="item?.isAccepted == true || item?.isRejected == true"  onclick="rejectInterest(item.interestedCandidateId)">Reject</button>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
-
     <script src="script.js"></script>
 </body>
-
 </html>

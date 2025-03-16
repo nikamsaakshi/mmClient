@@ -22,8 +22,8 @@ export class HomeComponent {
   candidates: Candidate[] = [];
 
   //login
-  email: string = 'nikita05@gmail.com';
-  password: string = 'nikita05@gmail.com';
+  email: string = '';
+  password: string = '';
 
   //register
   emailId: string = '';
@@ -120,14 +120,13 @@ export class HomeComponent {
       this.logout();
     }
     if (form.valid) {
-      // this.closeLoginModal();
-      // this.router.navigate(['matching-profiles']);
       this.authService.login(this.email, this.password).subscribe(
         (response) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('candidateId', response.candidateId);
           localStorage.setItem('candidateEmail', response.email);
           localStorage.setItem('isPremium', response.isPremium);
+          localStorage.setItem('gender', response.gender);
           this.closeLoginModal();
           this.router.navigate(['matching-profiles']);
         },
@@ -154,6 +153,7 @@ export class HomeComponent {
     localStorage.removeItem('candidateId');
     localStorage.removeItem('candidateEmail');
     localStorage.removeItem('isPremium');
+    localStorage.removeItem('gender');
     this.showInfo("Logged out successfully!");
     this.router.navigate(['home']);
   }
