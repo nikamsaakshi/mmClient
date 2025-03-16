@@ -34,7 +34,6 @@ export class ProfilePhotoComponent {
     }
   }
   onSubmit(): void {
-    alert('Submit');
     if (!this.selectedFile) {
       alert('Please select a file first!');
       return;

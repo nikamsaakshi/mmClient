@@ -5,79 +5,78 @@
       <button type="button" class="btn-close" (click)="onClose()"></button>
     </div>
 
-    <div class="modal-body" *ngIf="candidate"><div class="modal-overlay" (click)="onClose()">
-      <div class="modal-content modal-wide" (click)="$event.stopPropagation()">
-        <div class="modal-header" [ngClass]="{'bg-success': candidate?.isSuccess, 'bg-info': !candidate?.isSuccess}">
-          <h5 class="modal-title">Candidate Details</h5>
-          <button type="button" class="btn-close" (click)="onClose()"></button>
-        </div>
-        <div class="modal-body" *ngIf="candidate">
-          <div class="container">
-            <div class="row">
-              <!-- Profile Image Section -->
-              <div class="col-md-3 text-center">
-                <img src="http://localhost:5098/images/700afc44-b157-4074-b0c0-68e4fdefd66a.jpg" alt="Candidate Image" class="profile-image">
-              
-              
-                <!-- [src]="item.photoPath"  -->
-              </div>
-              
-              <!-- Candidate Info -->
-              <div class="col-md-9">
-                <p><strong>Name:</strong> {{ candidate.firstName }} {{ candidate.middleName }} {{ candidate.lastName }}</p>
-                <div class="row">
-                  <div class="col-sm">
-                    <p><strong>Religion:</strong> {{ candidate.religion }}</p>
-                  </div>
-                  <div class="col-sm">
-                    <p><strong>Cast:</strong> {{ candidate.cast }}</p>
-                  </div>
-                  <div class="col-sm">
-                    <p><strong>Subcast:</strong> {{ candidate.subCast }}</p>
-                  </div>
+    <div class="modal-body" *ngIf="candidate">
+      <div class="modal-overlay" (click)="onClose()">
+        <div class="modal-content modal-wide" (click)="$event.stopPropagation()">
+          <div class="modal-header" [ngClass]="{'bg-success': candidate?.isSuccess, 'bg-info': !candidate?.isSuccess}">
+            <h5 class="modal-title">Candidate Details</h5>
+            <button type="button" class="btn-close" (click)="onClose()"></button>
+          </div>
+          <div class="modal-body" *ngIf="candidate">
+            <div class="container">
+              <div class="row">
+                <!-- Profile Image Section -->
+                <div class="col-md-3 text-center">
+                  <!-- <img src="http://localhost:5098/images/700afc44-b157-4074-b0c0-68e4fdefd66a.jpg" alt="Candidate Image" class="profile-image"> -->
+                  <img [src]="candidate.photoPath" alt="Candidate Image" class="profile-image">
                 </div>
-    
-                <div class="row">
-                  <div class="col-md">
-                    <p><strong>Date Of Birth:</strong> {{ candidate.dob | date:'longDate' }}</p>
+                <!-- Candidate Info -->
+                <div class="col-md-9">
+                  <p><strong>Name:</strong> {{ candidate.firstName }} {{ candidate.middleName }} {{ candidate.lastName
+                    }}</p>
+                  <div class="row">
+                    <div class="col-sm">
+                      <p><strong>Religion:</strong> {{ candidate.religion }}</p>
+                    </div>
+                    <div class="col-sm">
+                      <p><strong>Cast:</strong> {{ candidate.cast }}</p>
+                    </div>
+                    <div class="col-sm">
+                      <p><strong>Subcast:</strong> {{ candidate.subCast }}</p>
+                    </div>
                   </div>
-                  <div class="col">
-                    <p><strong>Age:</strong> 32 </p>
+
+                  <div class="row">
+                    <div class="col-md">
+                      <p><strong>Date Of Birth:</strong> {{ candidate.dob | date:'longDate' }}</p>
+                    </div>
+                    <div class="col">
+                      <p><strong>Age:</strong> 32 </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <!-- Details Grid -->
+            <div class="container candidate-details-grid">
+              <p><strong>Complexion:</strong> {{ candidate.complexion }}</p>
+              <p><strong>Height:</strong> {{ candidate.height }} Cm</p>
+              <p><strong>Weight:</strong> {{ candidate.weight }} Kg</p>
+              <p><strong>Village/City:</strong> {{ candidate.villageOrCity }}</p>
+              <p><strong>District:</strong> {{ candidate.district }}</p>
+              <p><strong>Contact:</strong> ########## </p>
+              <p><strong>Family Deity:</strong> {{ candidate.familyDeity }}</p>
+              <p><strong>Deity Representation:</strong> {{ candidate.deityRepresentation }}</p>
+              <p><strong>Constellation:</strong> {{ candidate.constellation }}</p>
+              <p><strong>Zodiac Sign:</strong> {{ candidate.zodiacSign }}</p>
+              <p><strong>Category:</strong> {{ candidate.category }}</p>
+              <p><strong>Pulse:</strong> {{ candidate.pulse }}</p>
+              <p><strong>Blood Group:</strong> {{ candidate.bloodGroup }}</p>
+              <p><strong>Education:</strong> {{ candidate.education }}</p>
+              <p><strong>Profession:</strong> {{ candidate.profession }}</p>
+              <p><strong>Annual Income:</strong> {{ candidate.annualIncome }}</p>
+              <p><strong>Property:</strong> {{ candidate.property }}</p>
+              <p><strong>Family Background:</strong> {{ candidate.familyBackground }}</p>
+            </div>
           </div>
-    
-          <!-- Details Grid -->
-          <div class="container candidate-details-grid">
-            <p><strong>Complexion:</strong> {{ candidate.complexion }}</p>
-            <p><strong>Height:</strong> {{ candidate.height }} Cm</p>
-            <p><strong>Weight:</strong> {{ candidate.weight }} Kg</p>
-            <p><strong>Village/City:</strong> {{ candidate.villageOrCity }}</p>
-            <p><strong>District:</strong> {{ candidate.district }}</p>
-            <p><strong>Contact:</strong> ########## </p>
-            <p><strong>Family Deity:</strong> {{ candidate.familyDeity }}</p>
-            <p><strong>Deity Representation:</strong> {{ candidate.deityRepresentation }}</p>
-            <p><strong>Constellation:</strong> {{ candidate.constellation }}</p>
-            <p><strong>Zodiac Sign:</strong> {{ candidate.zodiacSign }}</p>
-            <p><strong>Category:</strong> {{ candidate.category }}</p>
-            <p><strong>Pulse:</strong> {{ candidate.pulse }}</p>
-            <p><strong>Blood Group:</strong> {{ candidate.bloodGroup }}</p>
-            <p><strong>Education:</strong> {{ candidate.education }}</p>
-            <p><strong>Profession:</strong> {{ candidate.profession }}</p>
-            <p><strong>Annual Income:</strong> {{ candidate.annualIncome }}</p>
-            <p><strong>Property:</strong> {{ candidate.property }}</p>
-            <p><strong>Family Background:</strong> {{ candidate.familyBackground }}</p>
+          <div class="modal-footer">
+            <button class="btn btn-success me-3" (click)="onSendInterest(candidate.candidateId)">Send Interest</button>
+            <button class="btn btn-danger" (click)="onClose()">Close</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-success me-3" (click)="onSendInterest(candidate.candidateId)">Send Interest</button>
-          <button class="btn btn-danger" (click)="onClose()">Close</button>
         </div>
       </div>
-    </div>
-    
+
       <!-- Image Scroll Section -->
       <div class="image-scroll-container">
         <div class="image-list">

@@ -41,6 +41,14 @@ export class AuthService {
     }
   }
 
+  getReceivedInterestMatchingProfilesByCandidateId(candidateId: string): Observable<any> {
+    try {
+      return this.http.get(`${this.baseUrl}/getReceivedInterestMatchingProfilesByCandidateId/` + candidateId);
+    } catch (error) {
+      return of(error);
+    }
+  }
+
   isProfileExists(candidateId: string): Observable<any> {
     try {
       return this.http.get(`${this.baseUrl}/isProfileExists/` + candidateId);
@@ -116,7 +124,6 @@ export class AuthService {
       catchError(() => of(false))
     );
   }
-
   sendIneterest(interestedCandidateId: number): Observable<boolean> {
     let candidateId = '';
     if (localStorage?.getItem('candidateId')) {
@@ -129,6 +136,27 @@ export class AuthService {
     }
     alert(body.candidateId + " and " + body.interestedCandidateId);
     return this.http.post(`${this.baseUrl}/saveCandidateinterest`, body).pipe(
+      map((response: any) => {
+        return !!response;
+      }),
+      catchError(() => of(false))
+    );
+  }
+
+  updateCandidateInterest(interestedCandidateId: number, isAccepted: number, isRejected: number): Observable<any> {
+    let candidateId = '';
+    if (localStorage?.getItem('candidateId')) {
+      candidateId = localStorage?.getItem('candidateId')?.toString() || '0';
+    }
+
+    const body = {
+      interestedCandidateId: interestedCandidateId,
+      candidateId: candidateId,
+      isAccepted: isAccepted,
+      isRejected: isRejected
+    }
+
+    return this.http.post(`${this.baseUrl}/updateCandidateInterest`, body).pipe(
       map((response: any) => {
         return !!response;
       }),
