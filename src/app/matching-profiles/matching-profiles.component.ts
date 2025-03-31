@@ -31,6 +31,20 @@ export class MatchingProfilesComponent {
     if (localStorage?.getItem('gender')) {
       gender = localStorage?.getItem('gender')?.toString() || '';
     }
+    if (gender == '') {
+      alert('Please complete your profile!');
+      this.router.navigate(["create-profile"]);
+    }
+
+    let cast = '';
+    if (localStorage?.getItem('cast')) {
+      cast = localStorage?.getItem('cast')?.toString() || '';
+    }
+    if (cast == '') {
+      alert('Please complete your profile!');
+      this.router.navigate(["create-profile"]);
+    }
+
     let candidate = new Candidate;
     this.authService.isProfileExists(candidateId).subscribe((response) => {
       candidate = response;
@@ -44,11 +58,11 @@ export class MatchingProfilesComponent {
     if (localStorage?.getItem('isPremium') == '1') {
       this.isPremium = true;
     }
-    this.getMatchingProfilesByGender(gender);
+    this.getMatchingProfilesByGender(gender,cast);
   }
 
-  getMatchingProfilesByGender(gender: string) {
-    this.authService.getMatchingProfilesByGender(gender).subscribe({
+  getMatchingProfilesByGender(gender: string,cast: string) {
+    this.authService.getMatchingProfilesByGender(gender + "/" + cast).subscribe({
       next: (response) => {
         this.candidates = response;
       },

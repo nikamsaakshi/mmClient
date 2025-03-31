@@ -60,3 +60,12 @@
       grid-template-columns: 1fr;
   }
 }
+
+.circle-img {
+  width: 100%;  /* Adjust size */
+  height: 100%; /* Ensure it's a square */
+  border-radius: 50%;
+  object-fit: cover; /* Ensures the image fills the circle */
+  border: 2px solid #ddd; /* Optional border */
+}
+

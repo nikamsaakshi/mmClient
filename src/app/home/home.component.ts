@@ -127,6 +127,7 @@ export class HomeComponent {
           localStorage.setItem('candidateEmail', response.email);
           localStorage.setItem('isPremium', response.isPremium);
           localStorage.setItem('gender', response.gender);
+          localStorage.setItem('cast', response.cast);
           this.closeLoginModal();
           this.router.navigate(['matching-profiles']);
         },
@@ -154,6 +155,7 @@ export class HomeComponent {
     localStorage.removeItem('candidateEmail');
     localStorage.removeItem('isPremium');
     localStorage.removeItem('gender');
+    localStorage.removeItem('cast');
     this.showInfo("Logged out successfully!");
     this.router.navigate(['home']);
   }

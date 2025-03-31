@@ -91,7 +91,7 @@ export class AuthService {
       const body = {
         imagemDocData
       };
-      return this.http.post(`${this.baseUrl}/saveCandidateProfile   `, imagemDocData);
+      return this.http.post(`${this.baseUrl}/saveCandidateProfile`, imagemDocData);
     } catch (error) {
       return of(error);
     }
@@ -112,6 +112,15 @@ export class AuthService {
     return this.http.get(`http://localhost:5098/api/Candidate/getImages`);
   }
 
+  sendMessage(sentId: Number, RecId: Number, messages: string): Observable<any> {
+    const body = {
+      sentId: sentId,
+      recId: RecId,
+      messages: messages
+    };
+    return this.http.post(`${this.baseUrl}/sendMessage`, body);
+  }
+  
   processPayment(): Observable<boolean> {
     let candidateId = '';
     if (localStorage?.getItem('candidateId')) {
