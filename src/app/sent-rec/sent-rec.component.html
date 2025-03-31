@@ -23,8 +23,31 @@
                         <p><strong>Contact:</strong> {{ item.maskedContactNumber }}</p>
                         <p *ngIf="!item.isAccepted"><strong>Status:</strong> <span class="status pending">Pending</span>
                         </p>
-                        <p *ngIf="item.isAccepted"><strong>Status:</strong> <span
-                                class="status accepted">Accepted</span></p>
+                        <p *ngIf="item.isAccepted">
+                            <strong>Status:</strong>
+                            <span class="status accepted">Accepted</span>
+                        </p>
+                        <div class="chat-container">
+                            <div *ngIf="!item.isAccepted" class="chat-icon" (click)="toggleChat()">
+                                <fa-icon [icon]="faUser"></fa-icon>
+                            </div>
+                            <!-- Chat Window (Opens Beside Icon) -->
+                            <div class="chat-window" *ngIf="isChatOpen">
+                                <div class="chat-header">
+                                    <h4>Live Chat</h4>
+                                    <button class="close-btn" (click)="toggleChat()">×</button>
+                                </div>
+                                <div class="chat-body">
+                                    <div *ngFor="let msg of chatMessages" class="chat-message">
+                                        <strong>You:</strong> {{ msg }}
+                                    </div>
+                                </div>
+                                <div class="chat-footer">
+                                    <input (keydown.enter)="sendMessage(item.candidateId)" [(ngModel)]="messageText" placeholder="Type a message..." class="chat-input">
+                                    <button (keydown.enter)="sendMessage(item.candidateId)" (click)="sendMessage(item.candidateId)" class="send-btn">Send</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,10 +67,12 @@
                         <p><strong>Profession:</strong> Businessman</p>
                         <p><strong>Contact:</strong> {{ item.maskedContactNumber }}</p>
                         <div class="actions">
-                            <button class="btn accept" [hidden]="!item?.isAccepted == true">Accepted</button> {{item.interestedCandidateId}}
-                            <button class="btn accept" [hidden]="item?.isAccepted == true" onclick="acceptInterest(item.interestedCandidateId)">Accept</button>
-                            <button class="btn reject" [hidden]="item?.isAccepted == true || item?.isRejected == true"  onclick="rejectInterest(item.interestedCandidateId)">Reject</button>
-
+                            <button class="btn accept" [hidden]="!item?.isAccepted == true">Accepted</button>
+                            {{item.interestedCandidateId}}
+                            <button class="btn accept" [hidden]="item?.isAccepted == true"
+                                onclick="acceptInterest(item.interestedCandidateId)">Accept</button>
+                            <button class="btn reject" [hidden]="item?.isAccepted == true || item?.isRejected == true"
+                                onclick="rejectInterest(item.interestedCandidateId)">Reject</button>
                         </div>
                     </div>
                 </div>
@@ -56,4 +81,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

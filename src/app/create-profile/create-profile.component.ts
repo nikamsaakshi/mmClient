@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class CreateProfileComponent implements OnInit, AfterViewInit {
   dob: string = '';
   maxDate!: string;
-  
+
   onFileSelected($event: Event) {
     throw new Error('Method not implemented.');
   }
@@ -38,7 +38,7 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
   religion: string = '';
   cast: string = '';
   subCast: string = '';
-  familyDeity: string= '';
+  familyDeity: string = '';
   deityRepresentation: string = '';
   constellation: string = '';
   zodiacSign: string = '';
@@ -47,12 +47,12 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
   height: number = 0;
   weight: number = 0;
   complexion: string = '';
-  bloodGroup:string = '';
-  education:string = '';
-  profession: string='';
-  annualIncome:string = '';
-  property:string = '';
-  familyBackground:string = '';
+  bloodGroup: string = '';
+  education: string = '';
+  profession: string = '';
+  annualIncome: string = '';
+  property: string = '';
+  familyBackground: string = '';
   photo: string = '';
   bioData: string = '';
   imagetobruploaded: FormData = new FormData();
@@ -94,7 +94,7 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
         this.religion = response.religion;
         this.cast = response.cast;
         this.subCast = response.subCast;
-        this.familyDeity = response.familyDeity;
+        this.familyDeity = response.familyDeity != null ? response.familyDeity : '';
         this.deityRepresentation = response.deityRepresentation;
         this.constellation = response.constellation;
         this.zodiacSign = response.zodiacSign;
@@ -142,21 +142,21 @@ export class CreateProfileComponent implements OnInit, AfterViewInit {
     imagemDocData.append('religion', this.religion);
     imagemDocData.append('cast', this.cast);
     imagemDocData.append('subcast', this.subCast);
-    imagemDocData.append('familyDeity',this.familyDeity);
-    imagemDocData.append('deityRepresentation',this.deityRepresentation);
-    imagemDocData.append('constellation',this.constellation);
-    imagemDocData.append('zodiacSign',this.zodiacSign);
-    imagemDocData.append('category',this.category);
-    imagemDocData.append('pulse',this.pulse);
+    imagemDocData.append('familyDeity', this.familyDeity.trim());
+    imagemDocData.append('deityRepresentation', this.deityRepresentation);
+    imagemDocData.append('constellation', this.constellation);
+    imagemDocData.append('zodiacSign', this.zodiacSign);
+    imagemDocData.append('category', this.category);
+    imagemDocData.append('pulse', this.pulse);
     imagemDocData.append('height', this.height.toString());
     imagemDocData.append('weight', this.weight.toString());
     imagemDocData.append('complexion', this.complexion);
-    imagemDocData.append('bloodGroup',this.bloodGroup);
+    imagemDocData.append('bloodGroup', this.bloodGroup);
     imagemDocData.append('education', this.education);
-    imagemDocData.append('profession',this.profession)
-    imagemDocData.append('annualIncome',this.annualIncome);
-    imagemDocData.append('property',this.property);
-    imagemDocData.append('familyBackground',this.familyBackground);
+    imagemDocData.append('profession', this.profession)
+    imagemDocData.append('annualIncome', this.annualIncome);
+    imagemDocData.append('property', this.property);
+    imagemDocData.append('familyBackground', this.familyBackground);
 
 
     if (form.valid) {

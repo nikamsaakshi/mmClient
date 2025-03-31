@@ -4,15 +4,17 @@ import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CandidateDetailsDialogComponent } from "../candidate-details-dialog/candidate-details-dialog.component";
 @Component({
   selector: 'app-nav',
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, CandidateDetailsDialogComponent],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
 export class NavComponent {
   faUser = faUser;
   faLogout = faSignOut;
+  selectedCandidateId: number | null = null;
   constructor(private router: Router, private authService: AuthService) { }
 
   navigateTo(page: string) {
@@ -50,5 +52,15 @@ export class NavComponent {
     }
     candidateEmail = candidateEmail.substring(0, 3).toString();
     return candidateEmail;
+  }
+
+  openPopup(): void {
+    if (localStorage?.getItem('candidateId')) {
+      this.selectedCandidateId  = Number(localStorage?.getItem('candidateId')?.toString()) || 0;
+    }
+  }
+
+  closePopup(): void {
+    this.selectedCandidateId = null;
   }
 }

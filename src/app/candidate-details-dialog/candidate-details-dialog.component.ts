@@ -13,15 +13,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './candidate-details-dialog.component.css'
 })
 export class CandidateDetailsDialogComponent implements OnInit {
-
-
   @Input() candidateId!: number;
   @Output() closeDialog = new EventEmitter<void>();
   candidate: any;
   age: number = 0;
+  sessionCandidateId: number = 0;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    if (localStorage?.getItem('candidateId')) {
+      this.sessionCandidateId = Number(localStorage?.getItem('candidateId')?.toString()) || 0;
+    }
     this.authService.getCandidateProfileByCandidateId(this.candidateId).subscribe({
       next: (data) => this.candidate = data,
       error: (err) => alert(err)

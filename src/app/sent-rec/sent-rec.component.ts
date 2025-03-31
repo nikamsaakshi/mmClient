@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CandidateProfileWithPhotos } from '../candidate.model';
 import { AuthService } from '../auth.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { faCommentAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { Firestore, collection, addDoc, query, orderBy, collectionData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-sent-rec',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FontAwesomeModule],
   templateUrl: './sent-rec.component.html',
   styleUrl: './sent-rec.component.css'
 })
@@ -14,7 +18,31 @@ import { CommonModule } from '@angular/common';
 export class SentRecComponent implements OnInit {
   candidates: CandidateProfileWithPhotos[] = [];
   candidatesReceived: CandidateProfileWithPhotos[] = [];
-  constructor(private authService: AuthService) { }
+  faUser = faCommentAlt;
+  //chat
+
+  isChatOpen = false;
+  messages$: any;
+  chatMessages: string[] = [];
+  messageText: string = '';
+  sender: string = 'Candidate'; // Replace with logged-in user's name
+  constructor(private authService: AuthService) {
+    // const messagesCollection = collection(this.firestore, 'messages');
+    // const q = query(messagesCollection, orderBy('timestamp'));
+    // this.messages$ = collectionData(q, { idField: 'id' });
+  }
+  toggleChat() {
+    this.isChatOpen = !this.isChatOpen;
+  }
+
+  async sendMessage(sentCandidateId: Number) {
+    let candidateId: Number = 0;
+    if (localStorage?.getItem('candidateId')) {
+      candidateId = Number(localStorage?.getItem('candidateId')?.toString()) || 0; // Loggedin
+    }
+    this.chatMessages.push(this.messageText);
+    this.messageText = '';
+  }
   ngOnInit(): void {
     let candidateId = '';
     if (localStorage?.getItem('candidateId')) {
@@ -47,6 +75,7 @@ export class SentRecComponent implements OnInit {
   }
 
   acceptInterest(interestedCandidateId: number) {
+    localStorage.getItem('candidateId')?.toString() || '0';
     this.authService.updateCandidateInterest(interestedCandidateId, 1, 0).subscribe((response) => {
       const interestedCandidate = response;
       let indexToUpdate = this.candidatesReceived.findIndex(item =>
@@ -60,8 +89,8 @@ export class SentRecComponent implements OnInit {
 
   rejectInterest(interestedCandidateId: number) {
     alert(interestedCandidateId)
-    this.authService.updateCandidateInterest(interestedCandidateId, 0, 1).subscribe((respose)=>{
-      alert(respose.isAccepted + "--"+respose.isRejected);
+    this.authService.updateCandidateInterest(interestedCandidateId, 0, 1).subscribe((respose) => {
+      alert(respose.isAccepted + "--" + respose.isRejected);
     });
   }
 }

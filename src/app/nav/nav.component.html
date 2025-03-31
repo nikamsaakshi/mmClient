@@ -18,8 +18,16 @@
                 <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('success-stories')">Success Stories</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" (click)="navigateTo('create-profile')">Complete Profile</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        My Profile
+                    </a>
+                    <!--dropdown-toggle-->
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="navigateTo('create-profile')">Complete Profile</a></li>
+                        <li><a class="dropdown-item" (click)="openPopup()">View Profile</a></li>
+                        <li><a class="dropdown-item" (click)="navigateTo('edit-profile')">Edit Profile</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" (click)="navigateTo('matching-profiles')">Matching Profiles</a>
@@ -48,3 +56,9 @@
         </div>
     </div>
 </nav>
+<ng-container *ngIf="selectedCandidateId">
+    <app-candidate-details-dialog 
+      [candidateId]="selectedCandidateId" 
+      (closeDialog)="closePopup()">
+    </app-candidate-details-dialog>
+  </ng-container>
